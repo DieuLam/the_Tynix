@@ -11,7 +11,7 @@ public class Main {
 
     public static int numberOfCountries() throws IOException {
         // read file
-        Scanner reader = new Scanner(new File("the_Tynix/data.csv"));
+        Scanner reader = new Scanner(new File("files/data.csv"));
         // country count
         int countryCount = 0;
         String country = "";
@@ -33,7 +33,7 @@ public class Main {
         // create an empty object array
         Data[] dataList = new Data[countryCount];
         // read file
-        BufferedReader reader = new BufferedReader(new FileReader("the_Tynix/data.csv"));
+        BufferedReader reader = new BufferedReader(new FileReader("files/data.csv"));
         reader.readLine(); // skip 1st line
         String line = reader.readLine(); // read each line
         // set 1st value
