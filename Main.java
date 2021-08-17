@@ -8,7 +8,7 @@ public class Main {
         Data date = new Data();
         // get country
         Scanner input = new Scanner(System.in);
-        System.out.print("Please choose a country: ");
+        System.out.print("Please choose an area: ");
         String country = input.nextLine();
         // if country is valid
         if (errorHandler.checkCountry(date, country) == true) {
@@ -16,7 +16,7 @@ public class Main {
             System.out.println("\n1: start date & end date \n2: number of days from a date \n3: number of weeks from a date");
             System.out.print("Please choose a time range method (1/2/3): ");
             int option = Integer.parseInt(input.nextLine());
-            // option 1
+            // option 1 
             if (option == 1) {
                 dateOption.option_1(date); // call
             // option 2
