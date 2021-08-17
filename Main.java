@@ -31,6 +31,8 @@ public class Main {
             System.out.println("\nWe can't find the country you are looking for");
         }
         input.close();
+
+        // PASS DATA TO SUMMARY
         System.out.printf("\ncountry: %s, start: %s, end: %s", date.country, date.startDate, date.endDate);
     }
 }
@@ -46,7 +48,6 @@ class dateOption {
         input.close();
 
         // assign to object
-
         date.startDate = startDate;
         date.endDate = endDate;
         return date;
@@ -82,7 +83,7 @@ class dateOption {
         // get date
         System.out.print("\nStart date (MM/dd/yyyy): ");
         String startDate = input.nextLine();
-        System.out.printf("How many days from %s: ", startDate);
+        System.out.printf("How many weeks from %s: ", startDate);
         int weeks = Integer.parseInt(input.nextLine());
         input.close();   
 
