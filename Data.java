@@ -7,22 +7,35 @@ class Data {
     String country;
     String startDate;
     String endDate;
-    
-    Data() {
+    Group[] DataGroups;
 
+    public String toString() {
+        return String.format("Country: %s \nStart date: %s \nEnd date: %s \n", country, startDate, endDate);
+    }
+}
+
+class Group {
+    String[] totalDays;
+    String metric;
+    int value;
+
+    Group(String[] totalDays) {
+        this.totalDays = totalDays;
+    }
+
+    public String toString() {
+        return Arrays.toString(totalDays);
     }
 }
 
 class dateOption {
     public static Data option_1(String country, Data date) throws IOException, ParseException {
-        Scanner input = new Scanner(System.in);
-        
+
         // get date
         System.out.print("\nStart date (MM/dd/yyyy): ");
-        String startDate = input.nextLine();
+        String startDate = Main.input.nextLine();
         System.out.print("End date (MM/dd/yyyy): ");
-        String endDate = input.nextLine();
-        input.close();
+        String endDate = Main.input.nextLine();
 
         if (errorHandler.checkDate(country, startDate, endDate) == true) {
             // assign to object
@@ -35,21 +48,21 @@ class dateOption {
     }
 
     public static Data option_2(String country, Data date) throws IOException, ParseException {
-        Scanner input = new Scanner(System.in);
+        
 
         // get date
         System.out.print("\nStart date (MM/dd/yyyy): ");
-        String startDate = input.nextLine();
+        String startDate = Main.input.nextLine();
         System.out.printf("How many days from %s: ", startDate);
-        int days = Integer.parseInt(input.nextLine());
-        input.close();   
+        int days = Integer.parseInt(Main.input.nextLine());
+   
 
-        // calculate end date;   
+        // calculate end date;
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Calendar c = Calendar.getInstance();
         c.setTime(formatter.parse(startDate)); // convert from String to Date
         c.add(Calendar.DATE, days); // add days
-        Date newDate = c.getTime(); 
+        Date newDate = c.getTime();
         String endDate = formatter.format(newDate); // covert back to string
 
         if (errorHandler.checkDate(country, startDate, endDate) == true) {
@@ -63,23 +76,21 @@ class dateOption {
     }
 
     public static Data option_3(String country, Data date) throws IOException, ParseException {
-        Scanner input = new Scanner(System.in);
-
         // get date
         System.out.print("\nStart date (MM/dd/yyyy): ");
-        String startDate = input.nextLine();
+        String startDate = Main.input.nextLine();
         System.out.printf("How many weeks from %s: ", startDate);
-        int weeks = Integer.parseInt(input.nextLine());
-        input.close();   
+        int weeks = Integer.parseInt(Main.input.nextLine());
 
-        // calculate end date; 
-        int days = weeks * 7;   
+
+        // calculate end date;
+        int days = weeks * 7;
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Calendar c = Calendar.getInstance();
         c.setTime(formatter.parse(startDate)); // convert from String to Date
         c.add(Calendar.DATE, days); // add days
         Date newDate = c.getTime();
-        String endDate = formatter.format(newDate);  // covert back to string
+        String endDate = formatter.format(newDate); // covert back to string
 
         if (errorHandler.checkDate(country, startDate, endDate) == true) {
             // assign to object
