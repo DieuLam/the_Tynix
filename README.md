@@ -1,6 +1,6 @@
 Hi, we are the Tynix
 
-Our team made up of 4 amazing individual:
+Our team made up of 4 amazing individuals:
 Nguyen Hai Minh Trang (s3878058)
 Phan Do Ngoc Linh (s3881557)
 Lam Tin Dieu (s3877664)
