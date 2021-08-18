@@ -27,10 +27,14 @@ class GroupingMethod {
                 }
                 // create new array with the same value with the temporary group list
                 String[] finalGroupingList = new String[groupingList.length];
-                finalGroupingList = groupingList;
+                for (int x = 0; x < groupingList.length; x++) {
+                    finalGroupingList[x] = groupingList[x];
+                }
                 // append new group object to the group list of data
                 data.DataGroups[j] = new Group(finalGroupingList);
+                
             }
+            System.out.println(Arrays.toString(data.DataGroups));
         }
 
         // if (totalDays / numGroup >= 2) {
@@ -54,7 +58,7 @@ class GroupingMethod {
         else {
             System.out.println("error");
         }
-        System.out.println(Arrays.toString(data.DataGroups));
+        
     }
 
     public static ArrayList<String> getTotalDays(Data obj) throws IOException, ParseException {
