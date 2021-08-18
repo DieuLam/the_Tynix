@@ -11,17 +11,10 @@ class Data {
     Data() {
 
     }
-
-    // create a constructor
-    Data(String country, String startDate, String endDate) {
-        this.country = country;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
 }
 
 class dateOption {
-    public static Data option_1(Data date) throws IOException, ParseException {
+    public static Data option_1(String country, Data date) throws IOException, ParseException {
         Scanner input = new Scanner(System.in);
         
         // get date
@@ -31,13 +24,17 @@ class dateOption {
         String endDate = input.nextLine();
         input.close();
 
-        // assign to object
-        date.startDate = startDate;
-        date.endDate = endDate;
+        if (errorHandler.checkDate(country, startDate, endDate) == true) {
+            // assign to object
+            date.startDate = startDate;
+            date.endDate = endDate;
+        } else {
+            System.out.println("We can't find the date you are looking for");
+        }
         return date;
     }
 
-    public static Data option_2(Data date) throws IOException, ParseException {
+    public static Data option_2(String country, Data date) throws IOException, ParseException {
         Scanner input = new Scanner(System.in);
 
         // get date
@@ -55,13 +52,17 @@ class dateOption {
         Date newDate = c.getTime(); 
         String endDate = formatter.format(newDate); // covert back to string
 
-         // assign to object
-         date.startDate = startDate;
-         date.endDate = endDate;
-         return date;
+        if (errorHandler.checkDate(country, startDate, endDate) == true) {
+            // assign to object
+            date.startDate = startDate;
+            date.endDate = endDate;
+        } else {
+            System.out.println("We can't find the date you are looking for");
+        }
+        return date;
     }
 
-    public static Data option_3(Data date) throws IOException, ParseException {
+    public static Data option_3(String country, Data date) throws IOException, ParseException {
         Scanner input = new Scanner(System.in);
 
         // get date
@@ -80,9 +81,13 @@ class dateOption {
         Date newDate = c.getTime();
         String endDate = formatter.format(newDate);  // covert back to string
 
-        // assign to object
-        date.startDate = startDate;
-        date.endDate = endDate;
+        if (errorHandler.checkDate(country, startDate, endDate) == true) {
+            // assign to object
+            date.startDate = startDate;
+            date.endDate = endDate;
+        } else {
+            System.out.println("We can't find the date you are looking for");
+        }
         return date;
     }
 }

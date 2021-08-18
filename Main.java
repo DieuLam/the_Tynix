@@ -18,13 +18,13 @@ public class Main {
             int option = Integer.parseInt(input.nextLine());
             // option 1 
             if (option == 1) {
-                dateOption.option_1(date); // call
+                dateOption.option_1(date.country, date); // call
             // option 2
             } else if (option == 2) {
-                dateOption.option_2(date); // call
+                dateOption.option_2(date.country, date); // call
             // option 3
             } else if (option == 3) {
-                dateOption.option_3(date); // call
+                dateOption.option_3(date.country, date); // call
             } else {
                 System.out.println("invalid option");
             }
