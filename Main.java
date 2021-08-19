@@ -33,6 +33,7 @@ public class Main {
                     break;
                 default:
                     System.out.println("invalid option");
+                    System.exit(0);
             }
 
             System.out.println("\n------------------------------------------------------");
@@ -54,6 +55,7 @@ public class Main {
                     break;
                 default:
                     System.out.println("invalid option");
+                    System.exit(0);
             }
 
             System.out.println("\n------------------------------------------------------");

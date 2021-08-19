@@ -17,8 +17,9 @@ class GroupingOption {
     }
 
     // add all selected dates to a list
-    public static ArrayList<String> getTotalDays(Data obj) throws IOException, ParseException {
-        ArrayList<String> dateList = new ArrayList<String>();
+    public static ArrayList<String[]> getTotalDays(Data obj) throws IOException, ParseException {
+
+        ArrayList<String[]> dateList = new ArrayList<String[]>();
         BufferedReader reader = new BufferedReader(new FileReader("data.csv"));
         reader.readLine(); // skip 1st line
         String line = reader.readLine();
@@ -26,17 +27,21 @@ class GroupingOption {
         while (line != null) {
             String[] splitData = line.split(",");
             // if start date is found on the data.csv
-            if (splitData[3].equals(obj.startDate)) {
+            if (splitData[3].equals(obj.startDate) && obj.country.equals(splitData[2])) {
                 // loop to add all dates from start date to before end date
                 while (true) {
                     // add date to the list
-                    dateList.add(splitData[3]);
+                    String[] dateData = new String[4];
+                    for (int i = 0; i < dateData.length; i++) {
+                        dateData[i] = splitData[i + 3];
+                    }
+                    dateList.add(dateData);
                     line = reader.readLine();
                     splitData = line.split(",");
                     // if end date is found on the data.csv
                     if (splitData[3].equals(obj.endDate)) {
                         // add end date to the list
-                        dateList.add(splitData[3]);
+                        dateList.add(dateData);
                         // escape the loop to stop adding
                         break;
                     }
@@ -47,6 +52,9 @@ class GroupingOption {
             }
         }
         reader.close();
+        for (int i = 0; i < dateList.size(); i++) {
+            System.out.println(Arrays.toString(dateList.get(i)));
+        }
         return dateList;
     }
 
@@ -58,7 +66,7 @@ class GroupingMethods {
     }
 
     // divde the dates into numbers of groups
-    public static void groupingMethod_2(ArrayList<String> list, int numGroup, int idx, Group[] groups)
+    public static void groupingMethod_2(ArrayList<String[]> list, int numGroup, int idx, Group[] groups)
             throws IOException, ParseException {
 
         int totalDays = list.size();
@@ -69,7 +77,7 @@ class GroupingMethods {
         // loop number-of-day times to add dates to group
         for (int i = 0; i < numDaysInGroup; i++) {
             // add dates from list to temp group
-            groupList[i] = (list.get(0));
+            groupList[i] = (list.get(0)[0]);
             // when a new date is added to the temp group, remove that date from the list
             list.remove(0);
         }
