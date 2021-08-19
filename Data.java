@@ -2,7 +2,8 @@ import java.io.*;
 import java.text.*;
 import java.util.*;
 
-// create an object
+//-------------------------------------- OBJECT -------------------------------------------
+
 class Data {
     String country;
     String startDate;
@@ -27,6 +28,8 @@ class Group {
         return Arrays.toString(totalDays);
     }
 }
+
+//---------------------------------------------------------------------------------------
 
 class dateOption {
     public static Data option_1(String country, Data date) throws IOException, ParseException {

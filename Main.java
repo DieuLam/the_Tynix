@@ -14,7 +14,7 @@ public class Main {
         // if country is valid
         if (errorHandler.checkCountry(date, country) == true) {
 
-            System.out.println("------------------------------------------------------");
+            System.out.println("\n------------------------------------------------------");
 
             // DATA
             System.out.println("\n1: Start date & end date \n2: Number of days from a date \n3: Number of weeks from a date\n");
@@ -35,7 +35,7 @@ public class Main {
                     System.out.println("invalid option");
             }
 
-            System.out.println("------------------------------------------------------");
+            System.out.println("\n------------------------------------------------------");
 
             // SUMMARY 2.1
             System.out.println("\n1: No grouping \n2: Number of groups \n3: Number of days\n");
@@ -56,7 +56,7 @@ public class Main {
                     System.out.println("invalid option");
             }
 
-            System.out.println("------------------------------------------------------");
+            System.out.println("\n------------------------------------------------------");
 
             // SUMMARY 2.2
             // THUAN put your code here
