@@ -17,19 +17,20 @@ public class Main {
             System.out.println("\n------------------------------------------------------");
 
             // DATA
-            System.out.println("\n1: Start date & end date \n2: Number of days from a date \n3: Number of weeks from a date\n");
+            System.out.println(
+                    "\n1: Start date & end date \n2: Number of days from a date \n3: Number of weeks from a date\n");
             System.out.print("Please choose a time range method (1/2/3): ");
             int option = Integer.parseInt(input.nextLine());
             // get option
             switch (option) {
                 case 1:
-                    dateOption.option_1(date.country, date); 
+                    dateOption.option_1(date.country, date);
                     break;
                 case 2:
-                    dateOption.option_2(date.country, date); 
+                    dateOption.option_2(date.country, date);
                     break;
                 case 3:
-                    dateOption.option_3(date.country, date); 
+                    dateOption.option_3(date.country, date);
                     break;
                 default:
                     System.out.println("invalid option");
@@ -45,13 +46,14 @@ public class Main {
             // get option
             switch (groupingMethod) {
                 case 1:
-                    // call method
+                    date.DataGroups = new Group[1];
+                    GroupingMethods.groupingMethod_2(GroupingOption.getTotalDays(date), 1, 0, date.DataGroups);
                     break;
                 case 2:
                     GroupingOption.groupByNumGroups(date);
                     break;
                 case 3:
-                    // call method
+                    GroupingOption.groupByNumDays(date);
                     break;
                 default:
                     System.out.println("invalid option");

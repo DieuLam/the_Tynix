@@ -12,8 +12,10 @@ class GroupingOption {
     }
 
     public static void groupByNumDays(Data data) throws IOException, ParseException {
-        // System.out.print("\nEnter number of days: ");
-        // int numDay = Integer.parseInt(Main.input.nextLine());
+        // get number of days from user
+        System.out.print("\nEnter number of days: ");
+        int numDay = Integer.parseInt(Main.input.nextLine());
+        GroupingMethods.groupingMethod_1(getTotalDays(data), numDay, 0, data);
     }
 
     // add all selected dates to a list
@@ -52,17 +54,22 @@ class GroupingOption {
             }
         }
         reader.close();
-        for (int i = 0; i < dateList.size(); i++) {
-            System.out.println(Arrays.toString(dateList.get(i)));
-        }
         return dateList;
     }
 
 }
 
 class GroupingMethods {
-    public static void groupingMethod_1() {
-
+    public static void groupingMethod_1(ArrayList<String[]> list, int numDay, int idx, Data data) throws IOException, ParseException {
+        int totalDays = list.size();
+        int numGroup = totalDays / numDay;
+        if (totalDays % numDay == 0) {
+            data.DataGroups = new Group[numGroup];
+            groupingMethod_2(list, numGroup, idx, data.DataGroups);
+        } else {
+            System.out.println("Cannot divide groups equally");
+            System.exit(0);
+        }
     }
 
     // divde the dates into numbers of groups
