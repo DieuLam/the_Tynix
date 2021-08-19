@@ -43,6 +43,7 @@ class dateOption {
             date.endDate = errorHandler.convertDate(endDate);
         } else {
             System.out.println("We can't find the date you are looking for");
+            System.exit(0);
         }
         return date;
     }
@@ -71,6 +72,7 @@ class dateOption {
             date.endDate = errorHandler.convertDate(endDate);
         } else {
             System.out.println("We can't find the date you are looking for");
+            System.exit(0);
         }
         return date;
     }
@@ -98,6 +100,7 @@ class dateOption {
             date.endDate = errorHandler.convertDate(endDate);
         } else {
             System.out.println("We can't find the date you are looking for");
+            System.exit(0);
         }
         return date;
     }
