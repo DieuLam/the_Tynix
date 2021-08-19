@@ -31,7 +31,7 @@ public class Main {
             } else {
                 System.out.println("invalid option");
             }
-
+            // SUMMARY 2.1
             System.out.println("\n1: No grouping \n2: Number of groups \n3: Number ofdays\n");
             System.out.print("Please choose a grouping method (1/2/3): ");
             int groupingMethod = Integer.parseInt(input.nextLine());
@@ -49,10 +49,6 @@ public class Main {
         } else {
             System.out.println("\nWe can't find the country you are looking for");
         }
-
-        // PASS DATA TO SUMMARY
-        // USE date.country, date.startDate, date.endDate as parameters
-
         System.out.println(date);
         // System.out.println(.dateList);
         input.close();

@@ -39,8 +39,8 @@ class dateOption {
 
         if (errorHandler.checkDate(country, startDate, endDate) == true) {
             // assign to object
-            date.startDate = startDate;
-            date.endDate = endDate;
+            date.startDate = errorHandler.convertDate(startDate);
+            date.endDate = errorHandler.convertDate(endDate);
         } else {
             System.out.println("We can't find the date you are looking for");
         }
