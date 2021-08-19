@@ -70,6 +70,7 @@ public class Main {
         }
         
         System.out.println(date);
+        MetricOption.PositiveCases(date);
         // System.out.println(.dateList);
         input.close();
     }
