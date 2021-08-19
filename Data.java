@@ -10,7 +10,7 @@ class Data {
     Group[] DataGroups;
 
     public String toString() {
-        return String.format("Country: %s \nStart date: %s \nEnd date: %s \n", country, startDate, endDate);
+        return String.format("Country: %s \nStart date: %s \nEnd date: %s \nGroups: %s", country, startDate, endDate, Arrays.toString(DataGroups));
     }
 }
 

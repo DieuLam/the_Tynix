@@ -37,13 +37,11 @@ public class Main {
             int groupingMethod = Integer.parseInt(input.nextLine());
 
             if (groupingMethod == 1) {
-                System.out.println("\nWe can't find the country you are looking for");
-            }
-            if (groupingMethod == 2) {
-                GroupingMethod.groupingMethod_2(date);
-            }
-            if (groupingMethod == 3) {
-                System.out.println("\nWe can't find the country you are looking for");
+
+            } else if (groupingMethod == 2) {
+                GroupingOption.groupByNumGroups(date);
+            } else if (groupingMethod == 3) {
+
             }
 
         } else {
