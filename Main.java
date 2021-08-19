@@ -9,12 +9,12 @@ public class Main {
         // create an empty object
         Data date = new Data();
         // get country
-
         System.out.print("Please choose an area: ");
         String country = input.nextLine();
         // if country is valid
         if (errorHandler.checkCountry(date, country) == true) {
-            // get date option
+
+            // DATA
             System.out.println(
                     "\n1: Start date & end date \n2: Number of days from a date \n3: Number of weeks from a date\n");
             System.out.print("Please choose a time range method (1/2/3): ");
@@ -31,18 +31,26 @@ public class Main {
             } else {
                 System.out.println("invalid option");
             }
+
             // SUMMARY 2.1
             System.out.println("\n1: No grouping \n2: Number of groups \n3: Number ofdays\n");
             System.out.print("Please choose a grouping method (1/2/3): ");
             int groupingMethod = Integer.parseInt(input.nextLine());
-
+            // option 1
             if (groupingMethod == 1) {
 
+            // option 2
             } else if (groupingMethod == 2) {
-                GroupingOption.groupByNumGroups(date);
+                GroupingOption.groupByNumGroups(date); // call
+            // option 3
             } else if (groupingMethod == 3) {
 
+            } else {
+                System.out.println("invalid option");
             }
+
+            // SUMMARY 2.2
+            // THUAN put your code here
 
         } else {
             System.out.println("\nWe can't find the country you are looking for");

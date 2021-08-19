@@ -5,14 +5,14 @@ import java.util.*;
 class GroupingOption {
     public static void groupByNumGroups(Data data) throws IOException, ParseException {
         // get number of groups from user
-        System.out.println("\nEnter number of groups");
+        System.out.print("\nEnter number of groups: ");
         int numGroup = Integer.parseInt(Main.input.nextLine());
         data.DataGroups = new Group[numGroup];
         GroupingMethods.groupingMethod_2(getTotalDays(data), numGroup, 0, data.DataGroups);
     }
 
     public static void groupByNumDays(Data data) throws IOException, ParseException {
-        // System.out.println("\nEnter number of days");
+        // System.out.print("\nEnter number of days: ");
         // int numDay = Integer.parseInt(Main.input.nextLine());
     }
 
@@ -50,34 +50,35 @@ class GroupingOption {
         return dateList;
     }
 
-    class GroupingMethods {
-        public static void groupingMethod_1() {
+}
 
+class GroupingMethods {
+    public static void groupingMethod_1() {
+
+    }
+
+    // divde the dates into numbers of groups
+    public static void groupingMethod_2(ArrayList<String> list, int numGroup, int idx, Group[] groups)
+            throws IOException, ParseException {
+
+        int totalDays = list.size();
+        int numDaysInGroup = totalDays / numGroup;
+        // temporary group to store the dates in one group
+        String[] groupList = new String[numDaysInGroup];
+
+        // loop number-of-day times to add dates to group
+        for (int i = 0; i < numDaysInGroup; i++) {
+            // add dates from list to temp group
+            groupList[i] = (list.get(0));
+            // when a new date is added to the temp group, remove that date from the list
+            list.remove(0);
         }
 
-        // divde the dates into numbers of groups
-        public static void groupingMethod_2(ArrayList<String> list, int numGroup, int idx, Group[] groups)
-                throws IOException, ParseException {
-
-            int totalDays = list.size();
-            int numDaysInGroup = totalDays / numGroup;
-            // temporary group to store the dates in one group
-            String[] groupList = new String[numDaysInGroup];
-
-            // loop number-of-day times to add dates to group
-            for (int i = 0; i < numDaysInGroup; i++) {
-                // add dates from list to temp group
-                groupList[i] = (list.get(0));
-                // when a new date is added to the temp group, remove that date from the list
-                list.remove(0);
-            }
-
-            // add new group to group list of the data
-            groups[idx] = new Group(groupList);
-            // repeat until there are no dates left
-            while (!list.isEmpty()) {
-                groupingMethod_2(list, numGroup - 1, idx + 1, groups);
-            }
+        // add new group to group list of the data
+        groups[idx] = new Group(groupList);
+        // repeat until there are no dates left
+        while (!list.isEmpty()) {
+            groupingMethod_2(list, numGroup - 1, idx + 1, groups);
         }
     }
 }
