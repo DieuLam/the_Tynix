@@ -10,7 +10,7 @@ class Data {
     Group[] DataGroups;
 
     public String toString() {
-        return String.format("Country: %s \nStart date: %s \nEnd date: %s \nGroups: %s", country, startDate, endDate, Arrays.toString(DataGroups));
+        return String.format("Country: %s \nStart date: %s \nEnd date: %s \nGroups: \n%s", country, startDate, endDate, Arrays.toString(DataGroups));
     }
 }
 
@@ -24,7 +24,7 @@ class Group {
     }
 
     public String toString() {
-        return Arrays.toString(totalDays);
+        return String.format("Dates: %s \nMetric: %s \nValue: %d\n", Arrays.toString(totalDays), metric, value);
     }
 }
 
