@@ -41,10 +41,8 @@ class GroupingOption {
                     line = reader.readLine();
                     splitData = line.split(",");
                     // if end date is found on the data.csv
-                    if (splitData[3].equals(obj.endDate)) {
-                        // add end date to the list
-                        dateList.add(dateData);
-                        // escape the loop to stop adding
+                    if (dateList.get(dateList.size()-1)[0].equals(obj.endDate)) {
+                        
                         break;
                     }
                 }
