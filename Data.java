@@ -2,7 +2,8 @@ import java.io.*;
 import java.text.*;
 import java.util.*;
 
-// create an object
+//-------------------------------------- OBJECT -------------------------------------------
+
 class Data {
     String country;
     String startDate;
@@ -28,6 +29,8 @@ class Group {
     }
 }
 
+//---------------------------------------------------------------------------------------
+
 class dateOption {
     public static Data option_1(String country, Data date) throws IOException, ParseException {
 
@@ -42,7 +45,7 @@ class dateOption {
             date.startDate = errorHandler.convertDate(startDate);
             date.endDate = errorHandler.convertDate(endDate);
         } else {
-            System.out.println("We can't find the date you are looking for");
+            System.out.println("\nWe can't find the date you are looking for");
             System.exit(0);
         }
         return date;
@@ -71,7 +74,7 @@ class dateOption {
             date.startDate = errorHandler.convertDate(startDate);
             date.endDate = errorHandler.convertDate(endDate);
         } else {
-            System.out.println("We can't find the date you are looking for");
+            System.out.println("\nWe can't find the date you are looking for");
             System.exit(0);
         }
         return date;
@@ -99,7 +102,7 @@ class dateOption {
             date.startDate = errorHandler.convertDate(startDate);
             date.endDate = errorHandler.convertDate(endDate);
         } else {
-            System.out.println("We can't find the date you are looking for");
+            System.out.println("\nWe can't find the date you are looking for");
             System.exit(0);
         }
         return date;

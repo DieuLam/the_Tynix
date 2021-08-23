@@ -65,7 +65,7 @@ class GroupingMethods {
             data.DataGroups = new Group[numGroup];
             groupingMethod_2(list, numGroup, idx, data.DataGroups);
         } else {
-            System.out.println("Cannot divide groups equally");
+            System.out.println("\nCannot divide groups equally");
             System.exit(0);
         }
     }
