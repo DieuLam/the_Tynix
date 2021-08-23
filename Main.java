@@ -86,7 +86,6 @@ public class Main {
             System.out.println("\nWe can't find the country you are looking for");
         }
         
-        MetricOption.PositiveCasesNew(date);
         System.out.println(date);
        
         // System.out.println(.dateList);
