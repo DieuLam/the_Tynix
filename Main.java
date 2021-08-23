@@ -63,13 +63,32 @@ public class Main {
             System.out.println("\n------------------------------------------------------");
 
             // SUMMARY 2.2
+            System.out.println("\n1: New cases \n2: Death cases \n3: Vaccinated\n");
+            System.out.print("Please choose a metric method (1/2/3): ");
+            int metric = Integer.parseInt(input.nextLine());
             // THUAN put your code here
+            switch (metric) {
+                case 1:
+                    MetricOption.CasesNewTotal(date, metric);
+                    break;
+                case 2:
+                    MetricOption.CasesNewTotal(date, metric);
+                    break;
+                case 3:
+                    MetricOption.VaccineNew(date);
+                    break;
+                default:
+                    System.out.println("invalid option");
+                    System.exit(0);
+            }
 
         } else {
             System.out.println("\nWe can't find the country you are looking for");
         }
         
+        MetricOption.PositiveCasesNew(date);
         System.out.println(date);
+       
         // System.out.println(.dateList);
         input.close();
     }
