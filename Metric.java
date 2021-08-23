@@ -59,7 +59,6 @@ class MetricOption {
         }
     }
 
-
     // calculate Up to
 
 }
