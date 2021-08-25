@@ -99,9 +99,9 @@ public class Main {
                 // Up To
                 case 2:
                     if (metric == 1 || metric == 2) {
-                        MetricOption.CasesUpTo(date);
+                        MetricOption.CasesUpTo(date, metric);
                     } else {
-                        // call Up To method
+                        MetricOption.VaccinatedUpTo(date);
                     }
                     break;
                 default:

@@ -54,24 +54,22 @@ class MetricOption {
             for (int j = 0; j < Vcases.DataGroups[i].totalDays.length; j++) {
                 casenum.remove(0);
             }
-            System.out.println(Vcases.DataGroups[i].value);
         }
     }
 
     // calculate Up to
-    public static void CasesUpTo(Data cases) throws IOException, ParseException {
-        // ArrayList<String[]> casenum = GroupingOption.getTotalDays(cases);
-        
+    // new cases and death case Up to
+    public static void CasesUpTo(Data cases, int metric) throws IOException, ParseException {
         String checkValue;
         for (int i = 0; i < cases.DataGroups.length; i++) {
             ArrayList<String[]> fdate = readfile.GetFirstValue(cases);
             for (int j = 0; j < fdate.size(); j++) {
                 int fvalue;
                 // check if data is null or not
-                if (fdate.get(0)[1].equals("")) {
+                if (fdate.get(0)[metric].equals("")) {
                     fvalue = 0;
                 } else {
-                    fvalue = Integer.parseInt(fdate.get(0)[1]);
+                    fvalue = Integer.parseInt(fdate.get(0)[metric]);
                 }
                 // check the data and asign new value
                 if (cases.DataGroups[i].value == 0) {
@@ -88,6 +86,33 @@ class MetricOption {
                     break;
                 }
             }
+        }
+    }
+
+    public static void VaccinatedUpTo(Data Vcases) throws IOException, ParseException {
+        ArrayList<String[]> fdate = readfile.GetFirstValue(Vcases);
+        // loop the number of group
+        for (int i = 0; i < Vcases.DataGroups.length; i++) {
+            for (int j = 0; j < fdate.size(); j++) {
+                if (fdate.get(j)[0].equals(Vcases.DataGroups[i].totalDays[Vcases.DataGroups[i].totalDays.length-1])) {
+                    int Fvaccine;
+                    int Lvaccine;
+                    // check the data if it null
+                    if (fdate.get(0)[3].equals("")) {
+                        Fvaccine = 0;
+                    } else {
+                        Fvaccine = Integer.parseInt(fdate.get(0)[3]);
+                    }    
+                    if (fdate.get(j)[3].equals("")) {
+                        Lvaccine = 0;
+                    } else {
+                        Lvaccine = Integer.parseInt(fdate.get(j)[3]);
+                    } 
+                    // get the vaccinated new total
+                    Vcases.DataGroups[i].value = Lvaccine - Fvaccine;
+                    break;
+                }
+            }    
         }
     }
 }
