@@ -30,7 +30,7 @@ class GroupingOption {
             String[] splitData = line.split(",");
             // if start date is found on the data.csv
             if (splitData[3].equals(obj.startDate) && obj.country.equals(splitData[2])) {
-                // loop to add all dates from start date to before end date
+                // loop to add all dates from start date to end date
                 while (true) {
                     // add date to the list
                     String[] dateData = new String[4];
@@ -42,7 +42,7 @@ class GroupingOption {
                     splitData = line.split(",");
                     // if end date is found on the data.csv
                     if (dateList.get(dateList.size()-1)[0].equals(obj.endDate)) {
-                        
+                        // stop the loop
                         break;
                     }
                 }
