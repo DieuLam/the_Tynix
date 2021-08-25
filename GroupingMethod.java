@@ -5,7 +5,7 @@ import java.util.*;
 class GroupingOption {
     public static void groupByNumGroups(Data data) throws IOException, ParseException {
         // get number of groups from user
-        System.out.print("\nEnter number of groups: ");
+        System.out.print("\nHow many groups: ");
         int numGroup = Integer.parseInt(Main.input.nextLine());
         data.DataGroups = new Group[numGroup];
         GroupingMethods.groupingMethod_2(getTotalDays(data), numGroup, 0, data.DataGroups);
@@ -13,7 +13,7 @@ class GroupingOption {
 
     public static void groupByNumDays(Data data) throws IOException, ParseException {
         // get number of days from user
-        System.out.print("\nEnter number of days: ");
+        System.out.print("\nHow many days per group: ");
         int numDay = Integer.parseInt(Main.input.nextLine());
         GroupingMethods.groupingMethod_1(getTotalDays(data), numDay, 0, data);
     }

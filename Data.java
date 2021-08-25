@@ -37,30 +37,22 @@ class dateOption {
         // get date
         System.out.print("\nStart date (MM/dd/yyyy): ");
         String startDate = Main.input.nextLine();
-        System.out.print("End date (MM/dd/yyyy): ");
+        System.out.print("\nEnd date (MM/dd/yyyy): ");
         String endDate = Main.input.nextLine();
 
-        if (errorHandler.checkDate(country, startDate, endDate) == true) {
-            // assign to object
-            date.startDate = errorHandler.convertDate(startDate);
-            date.endDate = errorHandler.convertDate(endDate);
-        } else {
-            System.out.println("\nWe can't find the date you are looking for");
-            System.exit(0);
-        }
+        // valid and assign date to object
+        assignDate(date, country, startDate, endDate);
         return date;
     }
 
     public static Data option_2(String country, Data date) throws IOException, ParseException {
-        
 
         // get date
         System.out.print("\nStart date (MM/dd/yyyy): ");
         String startDate = Main.input.nextLine();
-        System.out.printf("How many days from %s: ", startDate);
+        System.out.printf("\nHow many days from %s: ", startDate);
         int days = Integer.parseInt(Main.input.nextLine());
    
-
         // calculate end date;
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Calendar c = Calendar.getInstance();
@@ -69,14 +61,8 @@ class dateOption {
         Date newDate = c.getTime();
         String endDate = formatter.format(newDate); // covert back to string
 
-        if (errorHandler.checkDate(country, startDate, endDate) == true) {
-            // assign to object
-            date.startDate = errorHandler.convertDate(startDate);
-            date.endDate = errorHandler.convertDate(endDate);
-        } else {
-            System.out.println("\nWe can't find the date you are looking for");
-            System.exit(0);
-        }
+        // valid and assign date to object
+        assignDate(date, country, startDate, endDate);
         return date;
     }
 
@@ -84,9 +70,8 @@ class dateOption {
         // get date
         System.out.print("\nStart date (MM/dd/yyyy): ");
         String startDate = Main.input.nextLine();
-        System.out.printf("How many weeks from %s: ", startDate);
+        System.out.printf("\nHow many weeks from %s: ", startDate);
         int weeks = Integer.parseInt(Main.input.nextLine());
-
 
         // calculate end date;
         int days = weeks * 7;
@@ -97,6 +82,13 @@ class dateOption {
         Date newDate = c.getTime();
         String endDate = formatter.format(newDate); // covert back to string
 
+        // valid and assign date to object
+        assignDate(date, country, startDate, endDate);
+        return date;
+    }
+
+    public static Data assignDate(Data date, String country, String startDate, String endDate) throws IOException {
+        // valid date and country in the file
         if (errorHandler.checkDate(country, startDate, endDate) == true) {
             // assign to object
             date.startDate = errorHandler.convertDate(startDate);

@@ -60,6 +60,36 @@ class MetricOption {
     }
 
 
-    // calculate Up to
+     // calculate Up to
+     public static void CasesUpTo(Data cases) throws IOException, ParseException {
+        ArrayList<String[]> casenum = GroupingOption.getTotalDays(cases);
+        ArrayList<String[]> fdate = readfile.GetFirstValue(cases);
+        while (true) {
+            for (int i = 0; i < cases.DataGroups.length; i++) {
+                for (int j = 0; j < fdate.size(); j++) {
+                    int fvalue;
+                    // check if data is null or not
+                    if (fdate.get(0)[1].equals("")) {
+                        fvalue = 0;    
+                    }
+                    else {
+                        fvalue = Integer.parseInt(fdate.get(0)[1]);
+                    }
+                    // check the data and asign new value
+                    if (cases.DataGroups[i].value == 0) {
+                        cases.DataGroups[i].value = fvalue;
+                        fdate.remove(0);
+                        
+                    } else {
+                        cases.DataGroups[i].value += fvalue;
+                        fdate.remove(0);
+                    }    
+                }
+            }
+            if (fdate.get(cases.startDate)[0].equals(cases.startDate)){
+                break;
+            }    
+        }
+    }
 
 }
