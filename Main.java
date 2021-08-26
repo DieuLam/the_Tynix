@@ -120,7 +120,10 @@ public class Main {
             // get option
             switch (displayMethod) {
                 case 1:
-                    // call Tabular Display method here
+                    System.out.println();
+                    System.out.println("------------------------------------------------------");
+                    Display.tabularDisplay(date);
+                    System.out.println();
                     break;
                 case 2:
                     Display.displayChart(Display.createData(date));
@@ -130,7 +133,7 @@ public class Main {
                     System.exit(0);
             }
 
-            System.out.println(date);
+            //System.out.println(date);
 
             System.out.println("\n------------------------------------------------------");
 
