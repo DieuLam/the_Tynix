@@ -101,7 +101,7 @@ public class Main {
                     if (metric == 1 || metric == 2) {
                         MetricOption.CasesUpTo(date, metric, type);
                     } else {
-                        MetricOption.VaccinatedUpTo(date);
+                        MetricOption.VaccinatedUpTo(date, type);
                     }
                     break;
                 default:

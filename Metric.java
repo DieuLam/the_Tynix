@@ -11,8 +11,8 @@ class MetricOption {
         ArrayList<String[]> casenum = GroupingOption.getTotalDays(cases);
         // loop number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
-            cases.DataGroups[i].metric = Metric[metric];
-            cases.DataGroups[i].method = Method[type];
+            cases.DataGroups[i].metric = Metric[metric - 1];
+            cases.DataGroups[i].method = Method[type - 1];
             // loop the data in group
             for (int j = 0; j < cases.DataGroups[i].totalDays.length; j++) {
                 int new_total;
@@ -40,8 +40,8 @@ class MetricOption {
         ArrayList<String[]> casenum = GroupingOption.getTotalDays(Vcases);
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
-            Vcases.DataGroups[i].metric = Metric[3];
-            Vcases.DataGroups[i].method = Method[type];
+            Vcases.DataGroups[i].metric = Metric[2];
+            Vcases.DataGroups[i].method = Method[type - 1];
             int Fvaccine;
             int Lvaccine;
             // check the data if it null
@@ -68,8 +68,8 @@ class MetricOption {
     public static void CasesUpTo(Data cases, int metric, int type) throws IOException, ParseException {
         String checkValue;
         for (int i = 0; i < cases.DataGroups.length; i++) {
-            cases.DataGroups[i].metric = Metric[metric];
-            cases.DataGroups[i].method = Method[type];
+            cases.DataGroups[i].metric = Metric[metric - 1];
+            cases.DataGroups[i].method = Method[type - 1];
             ArrayList<String[]> fdate = readfile.GetFirstValue(cases);
             for (int j = 0; j < fdate.size(); j++) {
                 int fvalue;
@@ -102,8 +102,8 @@ class MetricOption {
         ArrayList<String[]> fdate = readfile.GetFirstValue(Vcases);
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
-            Vcases.DataGroups[i].metric = Metric[3];
-            Vcases.DataGroups[i].method = Method[type];
+            Vcases.DataGroups[i].metric = Metric[2];
+            Vcases.DataGroups[i].method = Method[type - 1];
             for (int j = 0; j < fdate.size(); j++) {     
                 int Lvaccine;
                 // check the data if it null
