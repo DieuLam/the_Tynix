@@ -53,8 +53,8 @@ public class Main {
             // get option
             switch (groupingMethod) {
                 case 1:
-                    date.DataGroups = new Group[1];
-                    GroupingMethods.groupingMethod_2(GroupingOption.getTotalDays(date), 1, 0, date.DataGroups);
+                    date.DataGroups = new Group[GroupingOption.getTotalDays(date).size()];
+                    GroupingMethods.groupingMethod_2(GroupingOption.getTotalDays(date), GroupingOption.getTotalDays(date).size(), 0, date.DataGroups);
                     break;
                 case 2:
                     GroupingOption.groupByNumGroups(date);
@@ -100,8 +100,10 @@ public class Main {
                 case 2:
                     if (metric == 1 || metric == 2) {
                         MetricOption.CasesUpTo(date, metric, type);
+                        readfile.PrintArrayList(date);
                     } else {
                         MetricOption.VaccinatedUpTo(date, type);
+                        readfile.PrintArrayList(date);
                     }
                     break;
                 default:
