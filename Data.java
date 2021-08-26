@@ -8,17 +8,17 @@ class Data {
     String country;
     String startDate;
     String endDate;
+    String method;
     Group[] DataGroups;
 
     public String toString() {
-        return String.format("Country: %s \nStart date: %s \nEnd date: %s \nGroups: \n%s", country, startDate, endDate, Arrays.toString(DataGroups));
+        return String.format("Country: %s \nStart date: %s \nEnd date: %s \nMethod: %s  \nGroups: \n%s", country, startDate, endDate, method, Arrays.toString(DataGroups));
     }
 }
 
 class Group {
     String[] totalDays;
     String metric;
-    String method;
     int value;
 
     Group(String[] totalDays) {
@@ -26,7 +26,7 @@ class Group {
     }
 
     public String toString() {
-        return String.format("Dates: %s \nMetric: %s \nMethod: %s \nValue: %d\n", Arrays.toString(totalDays), metric, method, value);
+        return String.format("Dates: %s \nMetric: %s \nValue: %d\n", Arrays.toString(totalDays), metric, value);
     }
 }
 
