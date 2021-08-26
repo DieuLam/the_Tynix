@@ -18,6 +18,7 @@ class Data {
 class Group {
     String[] totalDays;
     String metric;
+    String method;
     int value;
 
     Group(String[] totalDays) {
@@ -25,7 +26,7 @@ class Group {
     }
 
     public String toString() {
-        return String.format("Dates: %s \nMetric: %s \nValue: %d\n", Arrays.toString(totalDays), metric, value);
+        return String.format("Dates: %s \nMetric: %s \nMethod: %s \nValue: %d\n", Arrays.toString(totalDays), metric, method, value);
     }
 }
 

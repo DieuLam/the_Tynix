@@ -3,12 +3,16 @@ import java.text.*;
 import java.util.*;
 
 class MetricOption {
+    static String[] Metric = {"Positive case", "Death case", "Vaccinated"};
+    static String[] Method = {"New total", "Up to"};
     // new total
     // calculate both new cases and death cases new total
-    public static void CasesNewTotal(Data cases, int metric) throws IOException, ParseException {
+    public static void CasesNewTotal(Data cases, int metric, int type) throws IOException, ParseException {
         ArrayList<String[]> casenum = GroupingOption.getTotalDays(cases);
         // loop number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
+            cases.DataGroups[i].metric = Metric[metric];
+            cases.DataGroups[i].method = Method[type];
             // loop the data in group
             for (int j = 0; j < cases.DataGroups[i].totalDays.length; j++) {
                 int new_total;
@@ -32,10 +36,12 @@ class MetricOption {
     }
 
     // calculate vaccinated new total
-    public static void VaccineNew(Data Vcases) throws IOException, ParseException {
+    public static void VaccineNew(Data Vcases, int type) throws IOException, ParseException {
         ArrayList<String[]> casenum = GroupingOption.getTotalDays(Vcases);
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
+            Vcases.DataGroups[i].metric = Metric[3];
+            Vcases.DataGroups[i].method = Method[type];
             int Fvaccine;
             int Lvaccine;
             // check the data if it null
@@ -59,9 +65,11 @@ class MetricOption {
 
     // calculate Up to
     // new cases and death case Up to
-    public static void CasesUpTo(Data cases, int metric) throws IOException, ParseException {
+    public static void CasesUpTo(Data cases, int metric, int type) throws IOException, ParseException {
         String checkValue;
         for (int i = 0; i < cases.DataGroups.length; i++) {
+            cases.DataGroups[i].metric = Metric[metric];
+            cases.DataGroups[i].method = Method[type];
             ArrayList<String[]> fdate = readfile.GetFirstValue(cases);
             for (int j = 0; j < fdate.size(); j++) {
                 int fvalue;
@@ -89,11 +97,13 @@ class MetricOption {
         }
     }
 
-    public static void VaccinatedUpTo(Data Vcases) throws IOException, ParseException {
+    public static void VaccinatedUpTo(Data Vcases, int type) throws IOException, ParseException {
         String checkValue;
         ArrayList<String[]> fdate = readfile.GetFirstValue(Vcases);
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
+            Vcases.DataGroups[i].metric = Metric[3];
+            Vcases.DataGroups[i].method = Method[type];
             for (int j = 0; j < fdate.size(); j++) {     
                 int Lvaccine;
                 // check the data if it null

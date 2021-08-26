@@ -91,15 +91,15 @@ public class Main {
                 // New Total
                 case 1:
                     if (metric == 1 || metric == 2) {
-                        MetricOption.CasesNewTotal(date, metric);
+                        MetricOption.CasesNewTotal(date, metric, type);
                     } else {
-                        MetricOption.VaccineNew(date);
+                        MetricOption.VaccineNew(date, type);
                     }
                     break;
                 // Up To
                 case 2:
                     if (metric == 1 || metric == 2) {
-                        MetricOption.CasesUpTo(date, metric);
+                        MetricOption.CasesUpTo(date, metric, type);
                     } else {
                         MetricOption.VaccinatedUpTo(date);
                     }
