@@ -14,7 +14,7 @@ class MetricOption {
         cases.method = Method[type-1];
         // loop number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
-            cases.DataGroups[i].metric = Metric[metric];
+            cases.DataGroups[i].metric = Metric[metric - 1];
             // loop the data in group
             for (int j = 0; j < cases.DataGroups[i].totalDays.length; j++) {
                 int new_total;
@@ -75,7 +75,7 @@ class MetricOption {
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
             ArrayList<String[]> fdate = readfile.GetFirstValue(cases);
-            for (int j = 0; j < fdate.size(); j++) {
+            while (true) {
                 int fvalue;
                 // check if data is null or not
                 if (fdate.get(0)[metric].equals("")) {
@@ -109,7 +109,7 @@ class MetricOption {
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
             Vcases.DataGroups[i].metric = Metric[2];
-            for (int j = 0; j < fdate.size(); j++) {
+            while (true) {
                 int Lvaccine;
                 // check the data if it null
                 if (fdate.get(0)[3].equals("")) {
