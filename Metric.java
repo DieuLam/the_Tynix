@@ -73,7 +73,7 @@ class MetricOption {
 
         cases.method = Method[type-1];
         for (int i = 0; i < cases.DataGroups.length; i++) {
-            cases.DataGroups[i].metric = Metric[metric];
+            cases.DataGroups[i].metric = Metric[metric - 1];
             ArrayList<String[]> fdate = readfile.GetFirstValue(cases);
             for (int j = 0; j < fdate.size(); j++) {
                 int fvalue;

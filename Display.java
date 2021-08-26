@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
-public class Display {
-    
+public class Display {    
     public static int[] createData(Data date) {
         ArrayList<Integer> data = new ArrayList<Integer>();
         // loop through each group 
