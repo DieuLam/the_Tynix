@@ -44,7 +44,7 @@ class MetricOption {
         Vcases.method = Method[type-1];
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
-            Vcases.DataGroups[i].metric = Metric[3];
+            Vcases.DataGroups[i].metric = Metric[2];
             int Fvaccine;
             int Lvaccine;
             // check the data if it null
@@ -108,7 +108,7 @@ class MetricOption {
         Vcases.method = Method[type-1];
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
-            Vcases.DataGroups[i].metric = Metric[3];
+            Vcases.DataGroups[i].metric = Metric[2];
             for (int j = 0; j < fdate.size(); j++) {
                 int Lvaccine;
                 // check the data if it null
