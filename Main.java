@@ -112,6 +112,22 @@ public class Main {
             System.out.println("\n------------------------------------------------------");
 
             // Display
+            System.out.println("\n1: Tabular Display \n2: Chart Display");
+            System.out.print("\nPlease choose a display method (1/2): ");
+            int displayMethod = Integer.parseInt(input.nextLine());
+            // get option
+            switch (displayMethod) {
+                case 1:
+                    // call Tabular Display method here
+                    break;
+                case 2:
+                    Display.displayChart(Display.createData(date));
+                    break;
+                default:
+                    System.out.println("\ninvalid option");
+                    System.exit(0);
+            }
+
             System.out.println(date);
 
             System.out.println("\n------------------------------------------------------");
