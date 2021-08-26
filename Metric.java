@@ -90,28 +90,31 @@ class MetricOption {
     }
 
     public static void VaccinatedUpTo(Data Vcases) throws IOException, ParseException {
+        String checkValue;
         ArrayList<String[]> fdate = readfile.GetFirstValue(Vcases);
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
-            for (int j = 0; j < fdate.size(); j++) {
-                if (fdate.get(j)[0].equals(Vcases.DataGroups[i].totalDays[Vcases.DataGroups[i].totalDays.length-1])) {
-                    int Fvaccine;
-                    int Lvaccine;
-                    // check the data if it null
-                    if (fdate.get(0)[3].equals("")) {
-                        Fvaccine = 0;
-                    } else {
-                        Fvaccine = Integer.parseInt(fdate.get(0)[3]);
-                    }    
-                    if (fdate.get(j)[3].equals("")) {
-                        Lvaccine = 0;
-                    } else {
-                        Lvaccine = Integer.parseInt(fdate.get(j)[3]);
-                    } 
-                    // get the vaccinated new total
-                    Vcases.DataGroups[i].value = Lvaccine - Fvaccine;
-                    break;
+            for (int j = 0; j < fdate.size(); j++) {     
+                int Lvaccine;
+                // check the data if it null
+                if (fdate.get(0)[3].equals("")) {
+                    Lvaccine = 0;
+                } else {
+                    Lvaccine = Integer.parseInt(fdate.get(0)[3]);
                 }
+                if (Vcases.DataGroups[i].value > Lvaccine) {
+                    Vcases.DataGroups[i].value = Vcases.DataGroups[i].value;
+                    checkValue = fdate.get(0)[0];
+                    fdate.remove(0);
+
+                } else {
+                    Vcases.DataGroups[i].value = Lvaccine;
+                    checkValue = fdate.get(0)[0];
+                    fdate.remove(0); 
+                }
+                if (checkValue.equals(Vcases.DataGroups[i].totalDays[Vcases.DataGroups[i].totalDays.length-1])) {
+                    break;
+                }    
             }    
         }
     }
