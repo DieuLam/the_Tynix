@@ -100,8 +100,10 @@ public class Main {
                 case 2:
                     if (metric == 1 || metric == 2) {
                         MetricOption.CasesUpTo(date, metric, type);
+                        readfile.PrintArrayList(date);
                     } else {
                         MetricOption.VaccinatedUpTo(date, type);
+                        readfile.PrintArrayList(date);
                     }
                     break;
                 default:
