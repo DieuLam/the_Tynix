@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Display {
 
-    // ------------------------------------------------------------- TABULAR DISPLAY -----------------
+    // -------------------------------------------------------------- TABULAR DISPLAY -----------------
 
     public static void tabularDisplay(Data data) {
-        System.out.printf("\n%s %35s", "Range", "Value\n");
-        System.out.println("");
+        System.out.printf("%s %35s", "Range", "Value\n");
+        System.out.println();
         // loop through each group
         for (int i = 0; i < data.DataGroups.length; i++) {
             String startDate = data.DataGroups[i].totalDays[0];
@@ -18,12 +18,22 @@ public class Display {
             String date = startDate + " - " + endDate;
 
             String space = "";
-            
-            // create a loop to adjust the space between 2 columns 
-            for (int j = 0; j < 35 - date.length(); j++) {
-                space += " ";
-            }
-            System.out.println(date + space + value);
+
+            if (startDate == endDate) {
+                for (int j = 1; j < 36 - endDate.length(); j++) {
+                    space += " ";
+                }
+
+                System.out.println(endDate + space + value);
+            } else {
+                // create a loop to adjust the space between 2 columns 
+                for (int j = 0; j < 35 - date.length(); j++) {
+                    space += " ";
+                }
+
+                System.out.println(date + space + value);
+                }
+         
         } 
     }
 
@@ -88,7 +98,7 @@ public class Display {
                 }
             }
         } else { 
-            System.out.println("Data exceeded chart limit");
+            System.out.println("\nData exceeded chart limit\n");
             System.exit(0);
         }
         return chart;
@@ -132,7 +142,7 @@ public class Display {
         System.out.println();
 
         // summarize the data entered by user
-        System.out.println("Overview:");
+        System.out.println("Overview:\n");
         System.out.println("Country: " + country);
         System.out.println("Start date: " + startDate);
         System.out.println("End date: " + endDate);

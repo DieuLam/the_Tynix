@@ -3,6 +3,7 @@ import java.text.*;
 import java.util.*;
 
 class MetricOption {
+    
     static String[] Metric = { "Positive case", "Death case", "Vaccinated" };
     static String[] Method = { "New total", "Up to" };
 

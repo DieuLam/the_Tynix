@@ -33,6 +33,7 @@ class Group {
 //---------------------------------------------------------------------------------------
 
 class dateOption {
+    
     public static Data option_1(String country, Data date) throws IOException, ParseException {
 
         // get date
