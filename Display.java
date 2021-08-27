@@ -1,12 +1,9 @@
 import java.util.ArrayList;
 
 public class Display {
-
-    // ------------------------------------------------------------- TABULAR DISPLAY -----------------
-
     public static void tabularDisplay(Data data) {
-        System.out.printf("\n%s %35s", "Range", "Value\n");
-        System.out.println("");
+        System.out.printf("%s %35s", "Range", "Value\n");
+        System.out.println();
         // loop through each group
         for (int i = 0; i < data.DataGroups.length; i++) {
             String startDate = data.DataGroups[i].totalDays[0];
@@ -16,24 +13,28 @@ public class Display {
             int value = data.DataGroups[i].value;
             // create a "date" string to store start date and end date
             String date = startDate + " - " + endDate;
-           
+
             String space = "";
 
             if (startDate == endDate) {
-                System.out.println(startDate + space + value);
+                for (int j = 1; j < 36 - endDate.length(); j++) {
+                    space += " ";
+                }
+
+                System.out.println(endDate + space + value);
             } else {
-                System.out.println(date + space + value);
-            
                 // create a loop to adjust the space between 2 columns 
                 for (int j = 0; j < 35 - date.length(); j++) {
                     space += " ";
                 }
-            }          
+
+                System.out.println(date + space + value);
+                }
+         
         } 
     }
 
     public static void overviewDisplay(Data data) {
-        // get variables
         String country = data.country;
         String method = data.method;
         String startDate = data.DataGroups[0].totalDays[0];
@@ -42,14 +43,13 @@ public class Display {
         System.out.println();
 
         // summarize the data entered by user
+
         System.out.println("Overview:");
         System.out.println("Country: " + country);
         System.out.println("Start date: " + startDate);
         System.out.println("End date: " + endDate);
         System.out.println("Method: " + method);
     }
-
-    // ---------------------------------------------------------------- CHART DISPLAY -----------------
     
     public static int[] createData(Data date) {
         ArrayList<Integer> data = new ArrayList<Integer>();
