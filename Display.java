@@ -1,6 +1,43 @@
 import java.util.ArrayList;
 
 public class Display {
+    public static void tabularDisplay(Data data) {
+        System.out.printf("%s %35s", "Range", "Value\n");
+        System.out.println();
+        // loop through each group
+        for (int i = 0; i < data.DataGroups.length; i++) {
+            String startDate = data.DataGroups[i].totalDays[0];
+
+            String endDate = data.DataGroups[i].totalDays[data.DataGroups[i].totalDays.length - 1];
+  
+            int value = data.DataGroups[i].value;
+            // create a "date" string to store start date and end date
+            String date = startDate + " - " + endDate;
+
+            String space = "";
+            
+            // create a loop to adjust the space between 2 columns 
+            for (int j = 0; j < 35 - date.length(); j++) {
+                space += " ";
+            }
+            System.out.println(date + space + value);
+        } 
+
+        String country = data.country;
+        String method = data.method;
+        String startDate = data.DataGroups[0].totalDays[0];
+        String endDate = data.DataGroups[0].totalDays[data.DataGroups[0].totalDays.length - 1];
+
+        System.out.println();
+
+        // summarize the data entered by user
+
+        System.out.println("Overview:");
+        System.out.println("Country: " + country);
+        System.out.println("Start date: " + startDate);
+        System.out.println("End date: " + endDate);
+        System.out.println("Method: " + method);
+    }
     
     public static int[] createData(Data date) {
         ArrayList<Integer> data = new ArrayList<Integer>();
