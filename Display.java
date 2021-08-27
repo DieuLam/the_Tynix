@@ -13,14 +13,19 @@ public class Display {
             int value = data.DataGroups[i].value;
             // create a "date" string to store start date and end date
             String date = startDate + " - " + endDate;
-
+           
             String space = "";
+
+            if (startDate == endDate) {
+                System.out.println(startDate + space + value);
+            } else {
+                System.out.println(date + space + value);
             
-            // create a loop to adjust the space between 2 columns 
-            for (int j = 0; j < 35 - date.length(); j++) {
-                space += " ";
-            }
-            System.out.println(date + space + value);
+                // create a loop to adjust the space between 2 columns 
+                for (int j = 0; j < 35 - date.length(); j++) {
+                    space += " ";
+                }
+            }          
         } 
 
         String country = data.country;
