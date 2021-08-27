@@ -27,23 +27,6 @@ public class Display {
         } 
     }
 
-    public static void overviewDisplay(Data data) {
-        // get variables
-        String country = data.country;
-        String method = data.method;
-        String startDate = data.DataGroups[0].totalDays[0];
-        String endDate = data.DataGroups[0].totalDays[data.DataGroups[0].totalDays.length - 1];
-
-        System.out.println();
-
-        // summarize the data entered by user
-        System.out.println("Overview:");
-        System.out.println("Country: " + country);
-        System.out.println("Start date: " + startDate);
-        System.out.println("End date: " + endDate);
-        System.out.println("Method: " + method);
-    }
-
     // ---------------------------------------------------------------- CHART DISPLAY -----------------
     
     public static int[] createData(Data date) {
@@ -53,7 +36,7 @@ public class Display {
             // add value to array
             data.add(date.DataGroups[i].value);
         }
-        // convert arrayList to array
+        // convert arrayList to array 
         int[] passData = new int[data.size()];
         // loop through arrayList
         for (int j = 0; j < data.size(); j++) {
@@ -67,10 +50,9 @@ public class Display {
         int max = data[0];
         int min = data[0];
         for (int i = 1; i < data.length; i++) {
-            if (data[i] > max) {
+            if (data[i] >= max) {
                 max = data[i];
-            }
-            if (data[i] < min) {
+            } else {
                 min = data[i];
             }
         }
@@ -105,13 +87,15 @@ public class Display {
                     chartHeight -= 1;  // next line          
                 }
             }
-        } else {
+        } else { 
             System.out.println("Data exceeded chart limit");
+            System.exit(0);
         }
         return chart;
     }
 
     public static void displayChart(int[] data) {
+        
         // ------------------------------------------------- Create empty chart -----------------
         String[][] chart = new String[24][80];
         // fill up the chart with space
@@ -123,6 +107,7 @@ public class Display {
             chart[row][0] = "|";   // add vertical border
         }
         
+        // --------------------------------------------------- Plot the chart --------------------
         addToChart(chart, data);
 
         // --------------------------------------------------- Display chart ---------------------
@@ -133,5 +118,24 @@ public class Display {
             }
             System.out.println();
         } 
+    }
+
+    // ---------------------------------------------------------------- OVERVIEW DISPLAY --------------
+
+    public static void overviewDisplay(Data data) {
+        // get variables
+        String country = data.country;
+        String method = data.method;
+        String startDate = data.DataGroups[0].totalDays[0];
+        String endDate = data.DataGroups[0].totalDays[data.DataGroups[0].totalDays.length - 1];
+
+        System.out.println();
+
+        // summarize the data entered by user
+        System.out.println("Overview:");
+        System.out.println("Country: " + country);
+        System.out.println("Start date: " + startDate);
+        System.out.println("End date: " + endDate);
+        System.out.println("Method: " + method);
     }
 }
