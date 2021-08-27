@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 
 public class Display {
+
+    // ------------------------------------------------------------- TABULAR DISPLAY -----------------
+
     public static void tabularDisplay(Data data) {
-        System.out.printf("%s %35s", "Range", "Value\n");
-        System.out.println();
+        System.out.printf("\n%s %35s", "Range", "Value\n");
+        System.out.println("");
         // loop through each group
         for (int i = 0; i < data.DataGroups.length; i++) {
             String startDate = data.DataGroups[i].totalDays[0];
@@ -27,7 +30,10 @@ public class Display {
                 }
             }          
         } 
+    }
 
+    public static void overviewDisplay(Data data) {
+        // get variables
         String country = data.country;
         String method = data.method;
         String startDate = data.DataGroups[0].totalDays[0];
@@ -36,13 +42,14 @@ public class Display {
         System.out.println();
 
         // summarize the data entered by user
-
         System.out.println("Overview:");
         System.out.println("Country: " + country);
         System.out.println("Start date: " + startDate);
         System.out.println("End date: " + endDate);
         System.out.println("Method: " + method);
     }
+
+    // ---------------------------------------------------------------- CHART DISPLAY -----------------
     
     public static int[] createData(Data date) {
         ArrayList<Integer> data = new ArrayList<Integer>();

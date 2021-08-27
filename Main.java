@@ -100,10 +100,8 @@ public class Main {
                 case 2:
                     if (metric == 1 || metric == 2) {
                         MetricOption.CasesUpTo(date, metric, type);
-                        readfile.PrintArrayList(date);
                     } else {
                         MetricOption.VaccinatedUpTo(date, type);
-                        readfile.PrintArrayList(date);
                     }
                     break;
                 default:
@@ -120,10 +118,7 @@ public class Main {
             // get option
             switch (displayMethod) {
                 case 1:
-                    System.out.println();
-                    System.out.println("------------------------------------------------------");
                     Display.tabularDisplay(date);
-                    System.out.println();
                     break;
                 case 2:
                     Display.displayChart(Display.createData(date));
@@ -133,7 +128,9 @@ public class Main {
                     System.exit(0);
             }
 
-            //System.out.println(date);
+            System.out.println("\n------------------------------------------------------");
+
+            Display.overviewDisplay(date); // Overview of user choices
 
             System.out.println("\n------------------------------------------------------");
 
