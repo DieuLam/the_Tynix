@@ -55,7 +55,7 @@ class MetricOption {
                 Fvaccine = Integer.parseInt(casenum.get(0)[3]);
             }
             if (casenum.get(Vcases.DataGroups[i].totalDays.length - 1)[3].equals("")) {
-                Lvaccine = 0;
+                Lvaccine = Integer.parseInt(casenum.get(Vcases.DataGroups[i].totalDays.length)[3]);
             } else {
                 Lvaccine = Integer.parseInt(casenum.get(Vcases.DataGroups[i].totalDays.length - 1)[3]);
             }
