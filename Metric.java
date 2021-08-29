@@ -71,34 +71,34 @@ class MetricOption {
     // new cases and death case Up to
     public static void CasesUpTo(Data cases, int metric, int type) throws IOException, ParseException {
         String checkValue;
-
+        ArrayList<String[]> casenum = GroupingOption.getTotalDays(cases);
         cases.method = Method[type-1];
+        int UptoValue = 0;
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
-            ArrayList<String[]> fdate = readfile.GetFirstValue(cases);
             while (true) {
-                int fvalue;
+                int fvalue; 
                 // check if data is null or not
-                if (fdate.get(0)[metric].equals("")) {
+                if (casenum.get(0)[metric].equals("")) {
                     fvalue = 0;
                 } else {
-                    fvalue = Integer.parseInt(fdate.get(0)[metric]);
+                    fvalue = Integer.parseInt(casenum.get(0)[metric]);
                 }
                 // check the data and asign new value
-                if (cases.DataGroups[i].value == 0) {
-                    cases.DataGroups[i].value = fvalue;
-                    checkValue = fdate.get(0)[0];
-                    fdate.remove(0);
-
+                if (UptoValue == 0) {
+                    UptoValue = fvalue;
+                    checkValue = casenum.get(0)[0];
+                    casenum.remove(0);
                 } else {
-                    cases.DataGroups[i].value += fvalue;
-                    checkValue = fdate.get(0)[0];
-                    fdate.remove(0);
+                    UptoValue += fvalue;
+                    checkValue = casenum.get(0)[0];
+                    casenum.remove(0);
                 }
                 if (checkValue.equals(cases.DataGroups[i].totalDays[cases.DataGroups[i].totalDays.length - 1])) {
                     break;
                 }
-            }
+            }   
+                cases.DataGroups[i].value = UptoValue;
         }
     }
 
