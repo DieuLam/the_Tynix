@@ -3,7 +3,7 @@ import java.text.*;
 import java.util.*;
 
 class MetricOption {
-    
+
     static String[] Metric = { "Positive case", "Death case", "Vaccinated" };
     static String[] Method = { "New total", "Up to" };
 
@@ -12,7 +12,7 @@ class MetricOption {
     public static void CasesNewTotal(Data cases, int metric, int type) throws IOException, ParseException {
         ArrayList<String[]> casenum = GroupingOption.getTotalDays(cases);
 
-        cases.method = Method[type-1];
+        cases.method = Method[type - 1];
         // loop number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
@@ -41,28 +41,47 @@ class MetricOption {
     // calculate vaccinated new total
     public static void VaccineNew(Data Vcases, int type) throws IOException, ParseException {
         ArrayList<String[]> casenum = GroupingOption.getTotalDays(Vcases);
+        ArrayList<String[]> dateList = getVaccinatedValue(casenum, Vcases);
 
-        Vcases.method = Method[type-1];
+        Vcases.method = Method[type - 1];
+
+        ArrayList<String[]> arr = readfile.GetFirstValue(Vcases);
+        String[] day = new String[1];
+
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i)[0].equals(dateList.get(0)[0]) && !arr.get(0)[0].equals(dateList.get(0)[0])) {
+                day = arr.get(i - 1);
+                break;
+            } else {
+                day = dateList.get(0);
+            }
+        }
+
+        dateList.add(0, day);
+        for (int i = 0; i < dateList.size(); i++) {
+            System.out.println(Arrays.toString(dateList.get(i)));
+        }
+
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
             Vcases.DataGroups[i].metric = Metric[2];
             int Fvaccine;
             int Lvaccine;
             // check the data if it null
-            if (casenum.get(0)[3].equals("")) {
+            if (dateList.get(0)[3].equals("0")) {
                 Fvaccine = 0;
             } else {
-                Fvaccine = Integer.parseInt(casenum.get(0)[3]);
+                Fvaccine = Integer.parseInt(dateList.get(0)[3]);
             }
-            if (casenum.get(Vcases.DataGroups[i].totalDays.length - 1)[3].equals("")) {
-                Lvaccine = Integer.parseInt(casenum.get(Vcases.DataGroups[i].totalDays.length)[3]);
+            if (dateList.get(Vcases.DataGroups[i].totalDays.length)[3].equals("0")) {
+                Lvaccine = 0;
             } else {
-                Lvaccine = Integer.parseInt(casenum.get(Vcases.DataGroups[i].totalDays.length - 1)[3]);
+                Lvaccine = Integer.parseInt(dateList.get(Vcases.DataGroups[i].totalDays.length)[3]);
             }
             // get the vaccinated new total
             Vcases.DataGroups[i].value = Lvaccine - Fvaccine;
             for (int j = 0; j < Vcases.DataGroups[i].totalDays.length; j++) {
-                casenum.remove(0);
+                dateList.remove(0);
             }
         }
     }
@@ -72,12 +91,12 @@ class MetricOption {
     public static void CasesUpTo(Data cases, int metric, int type) throws IOException, ParseException {
         String checkValue;
         ArrayList<String[]> casenum = GroupingOption.getTotalDays(cases);
-        cases.method = Method[type-1];
+        cases.method = Method[type - 1];
         int UptoValue = 0;
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
             while (true) {
-                int fvalue; 
+                int fvalue;
                 // check if data is null or not
                 if (casenum.get(0)[metric].equals("")) {
                     fvalue = 0;
@@ -97,8 +116,8 @@ class MetricOption {
                 if (checkValue.equals(cases.DataGroups[i].totalDays[cases.DataGroups[i].totalDays.length - 1])) {
                     break;
                 }
-            }   
-                cases.DataGroups[i].value = UptoValue;
+            }
+            cases.DataGroups[i].value = UptoValue;
         }
     }
 
@@ -106,7 +125,7 @@ class MetricOption {
         String checkValue;
         ArrayList<String[]> fdate = readfile.GetFirstValue(Vcases);
 
-        Vcases.method = Method[type-1];
+        Vcases.method = Method[type - 1];
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
             Vcases.DataGroups[i].metric = Metric[2];
@@ -133,5 +152,41 @@ class MetricOption {
                 }
             }
         }
+    }
+
+    public static ArrayList<String[]> getVaccinatedValue(ArrayList<String[]> dateList, Data Vcases)
+            throws IOException, ParseException {
+
+        ArrayList<String[]> fdate = readfile.GetFirstValue(Vcases);
+        ArrayList<String[]> xyz = new ArrayList<String[]>();
+        for (String[] d : dateList) {
+            xyz.add(d.clone());
+        }
+        for (int i = 0; i < dateList.size(); i++) {
+            // loop the number of group
+            if (xyz.get(i)[3].equals("")) {
+                xyz.get(i)[3] = "0";
+            }
+            for (int j = 0; j < fdate.size(); j++) {
+                // check the data if it null
+                int vaccine;
+                // check the data if it null
+                if (fdate.get(j)[3].equals("")) {
+                    vaccine = 0;
+                } else {
+                    vaccine = Integer.parseInt(fdate.get(j)[3]);
+                }                
+                if (Integer.parseInt(xyz.get(i)[3]) > vaccine) {
+                    xyz.get(i)[3] = xyz.get(i)[3];
+
+                } else {
+                    xyz.get(i)[3] = Integer.toString(vaccine);                    
+                }
+                if (fdate.get(j)[0].equals(dateList.get(i)[0])) {
+                    break;
+                }
+            }
+        }
+        return xyz;
     }
 }
