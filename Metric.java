@@ -46,20 +46,15 @@ class MetricOption {
         Vcases.method = Method[type - 1];
 
         ArrayList<String[]> arr = readfile.GetFirstValue(Vcases);
-        String[] day = new String[1];
+        String[] day = new String[4];
 
         for (int i = 0; i < arr.size(); i++) {
             if (arr.get(i)[0].equals(dateList.get(0)[0]) && !arr.get(0)[0].equals(dateList.get(0)[0])) {
-                day = arr.get(i - 1);
+                day[3] = arr.get(i - 1)[3];
                 break;
             } else {
-                day = dateList.get(0);
+                day[3] = "0";
             }
-        }
-
-        dateList.add(0, day);
-        for (int i = 0; i < dateList.size(); i++) {
-            System.out.println(Arrays.toString(dateList.get(i)));
         }
 
         // loop the number of group
@@ -156,31 +151,29 @@ class MetricOption {
 
     public static ArrayList<String[]> getVaccinatedValue(ArrayList<String[]> dateList, Data Vcases)
             throws IOException, ParseException {
-
         ArrayList<String[]> fdate = readfile.GetFirstValue(Vcases);
         ArrayList<String[]> xyz = new ArrayList<String[]>();
+
         for (String[] d : dateList) {
             xyz.add(d.clone());
         }
+
         for (int i = 0; i < dateList.size(); i++) {
-            // loop the number of group
             if (xyz.get(i)[3].equals("")) {
                 xyz.get(i)[3] = "0";
             }
             for (int j = 0; j < fdate.size(); j++) {
-                // check the data if it null
                 int vaccine;
-                // check the data if it null
                 if (fdate.get(j)[3].equals("")) {
                     vaccine = 0;
                 } else {
                     vaccine = Integer.parseInt(fdate.get(j)[3]);
-                }                
+                }
                 if (Integer.parseInt(xyz.get(i)[3]) > vaccine) {
                     xyz.get(i)[3] = xyz.get(i)[3];
 
                 } else {
-                    xyz.get(i)[3] = Integer.toString(vaccine);                    
+                    xyz.get(i)[3] = Integer.toString(vaccine);
                 }
                 if (fdate.get(j)[0].equals(dateList.get(i)[0])) {
                     break;
