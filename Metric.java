@@ -41,7 +41,7 @@ class MetricOption {
     // calculate vaccinated new total
     public static void VaccineNew(Data Vcases, int type) throws IOException, ParseException {
         ArrayList<String[]> casenum = GroupingOption.getTotalDays(Vcases);
-        ArrayList<String[]> dateList = getVaccinatedValue(casenum, Vcases);
+        
 
         Vcases.method = Method[type - 1];
 
@@ -49,13 +49,18 @@ class MetricOption {
         String[] day = new String[4];
 
         for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i)[0].equals(dateList.get(0)[0]) && !arr.get(0)[0].equals(dateList.get(0)[0])) {
+            if (arr.get(i)[0].equals(casenum.get(0)[0]) && !arr.get(0)[0].equals(casenum.get(0)[0])) {
                 day[3] = arr.get(i - 1)[3];
+                day[0] = arr.get(i - 1)[0];
                 break;
             } else {
+                day[0] = casenum.get(0)[0];
                 day[3] = "0";
             }
         }
+
+        casenum.add(0, day);
+        ArrayList<String[]> dateList = getVaccinatedValue(casenum, Vcases);
 
         // loop the number of group
         for (int i = 0; i < Vcases.DataGroups.length; i++) {
