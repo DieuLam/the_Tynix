@@ -1,12 +1,9 @@
-import java.util.*;
-
 public class Display {
 
-    // -------------------------------------------------------------- TABULAR
-    // DISPLAY -----------------
+    // -------------------------------------------------------------- TABULAR DISPLAY -----------------
 
     public static void tabularDisplay(Data data) {
-        System.out.printf("%s", "------------------------------------------------");
+        System.out.printf("\n%s", "------------------------------------------------");
         System.out.printf("\n%s %20s %15s", "Range", "|", "Value\n");
         System.out.printf("%s", "------------------------------------------------");
         System.out.println();
@@ -26,9 +23,9 @@ public class Display {
                     space += " ";
                 }
                 System.out.println(String.format("%s %s %s %15s", endDate, space, "|", value));
-                // for grouping
+            // for grouping
             } else {
-                // create a loop to adjust the space between 2 columns
+                // adjust the space between 2 columns
                 for (int j = 0; j <= 22 - date.length(); j++) {
                     space += " ";
                 }
@@ -36,21 +33,15 @@ public class Display {
             }
         }
     }
-    // ---------------------------------------------------------------- CHART
-    // DISPLAY -----------------
+    
+    // ---------------------------------------------------------------- CHART DISPLAY -----------------
 
     public static int[] createData(Data date) {
-        ArrayList<Integer> data = new ArrayList<Integer>();
-        // loop through each group
-        for (int i = 0; i < date.DataGroups.length; i++) {
-            // add value to array
-            data.add(date.DataGroups[i].value);
-        }
-        // convert arrayList to array
-        int[] passData = new int[data.size()];
+        // put each group value into array
+        int[] passData = new int[date.DataGroups.length];
         // loop through arrayList
-        for (int j = 0; j < data.size(); j++) {
-            passData[j] = data.get(j);
+        for (int i = 0; i < date.DataGroups.length; i++) {
+            passData[i] = date.DataGroups[i].value;
         }
         return passData;
     }
@@ -136,8 +127,7 @@ public class Display {
         }
     }
 
-    // ---------------------------------------------------------------- OVERVIEW
-    // DISPLAY --------------
+    // ---------------------------------------------------------------- OVERVIEW DISPLAY --------------
 
     public static void overviewDisplay(Data data) {
         // summarize the data entered by user
