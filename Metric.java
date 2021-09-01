@@ -92,7 +92,6 @@ class MetricOption {
         String checkValue;
         ArrayList<String[]> casenum = GroupingOption.getTotalDays(cases);
         cases.method = Method[type - 1];
-        int UptoValue = 0;
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
             while (true) {
@@ -104,12 +103,12 @@ class MetricOption {
                     fvalue = Integer.parseInt(casenum.get(0)[metric]);
                 }
                 // check the data and asign new value
-                if (UptoValue == 0) {
-                    UptoValue = fvalue;
+                if (cases.DataGroups[i].value == 0) {
+                    cases.DataGroups[i].value = fvalue;
                     checkValue = casenum.get(0)[0];
                     casenum.remove(0);
                 } else {
-                    UptoValue += fvalue;
+                    cases.DataGroups[i].value += fvalue;
                     checkValue = casenum.get(0)[0];
                     casenum.remove(0);
                 }
@@ -117,7 +116,6 @@ class MetricOption {
                     break;
                 }
             }
-            cases.DataGroups[i].value = UptoValue;
         }
     }
 
