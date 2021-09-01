@@ -1,11 +1,9 @@
-import java.util.ArrayList;
-
 public class Display {
 
     // -------------------------------------------------------------- TABULAR DISPLAY -----------------
 
     public static void tabularDisplay(Data data) {
-        System.out.printf("%s %35s", "Range", "Value\n");
+        System.out.printf("\n%s %35s", "Range", "Value\n");
         System.out.println();
         // loop through each group
         for (int i = 0; i < data.DataGroups.length; i++) {
@@ -19,18 +17,19 @@ public class Display {
 
             String space = "";
 
+            // for no grouping
             if (startDate == endDate) {
                 for (int j = 1; j < 36 - endDate.length(); j++) {
                     space += " ";
                 }
-
                 System.out.println(endDate + space + value);
+
+            // for grouping
             } else {
                 // create a loop to adjust the space between 2 columns 
                 for (int j = 0; j < 35 - date.length(); j++) {
                     space += " ";
                 }
-
                 System.out.println(date + space + value);
                 }
          
@@ -40,37 +39,36 @@ public class Display {
     // ---------------------------------------------------------------- CHART DISPLAY -----------------
     
     public static int[] createData(Data date) {
-        ArrayList<Integer> data = new ArrayList<Integer>();
-        // loop through each group 
-        for (int i = 0; i < date.DataGroups.length; i++) {
-            // add value to array
-            data.add(date.DataGroups[i].value);
-        }
-        // convert arrayList to array 
-        int[] passData = new int[data.size()];
-        // loop through arrayList
-        for (int j = 0; j < data.size(); j++) {
-            passData[j] = data.get(j);
+
+        // put all value per group in an array 
+        int[] passData = new int[date.DataGroups.length];
+        // loop through all group
+        for (int i = 0; i < passData.length; i++) {
+            passData[i] = date.DataGroups[i].value;
         }
         return passData;
     }
 
     public static int[] getMaxMin(int[] data) {
+
         // get max / min value
         int max = data[0];
         int min = data[0];
         for (int i = 1; i < data.length; i++) {
             if (data[i] >= max) {
                 max = data[i];
-            } else {
+            } else if (data[i] <= min) {
                 min = data[i];
             }
         }
+        // assign value to array
         int[] max_min = {max, min};
         return max_min;
     }
 
     public static String[][] addToChart(String[][] chart, int[] data) {
+
+        // check data length
         if (data.length <= 79) {
             // calculate horizontal scale
             int groupPoint = (int) Math.floor(79 / data.length); // round down
@@ -92,7 +90,7 @@ public class Display {
                                 chart[row][col] = "*";
                             }
                         }
-                        break;
+                        break; // loop next row if a point is splotted
                     }   
                     chartHeight -= 1;  // next line          
                 }
