@@ -1,6 +1,9 @@
+import java.util.*;
+
 public class Display {
 
-    // -------------------------------------------------------------- TABULAR DISPLAY -----------------
+    // -------------------------------------------------------------- TABULAR
+    // DISPLAY -----------------
 
     public static void tabularDisplay(Data data) {
         System.out.printf("\n%s %35s", "Range", "Value\n");
@@ -10,7 +13,7 @@ public class Display {
             String startDate = data.DataGroups[i].totalDays[0];
 
             String endDate = data.DataGroups[i].totalDays[data.DataGroups[i].totalDays.length - 1];
-  
+
             int value = data.DataGroups[i].value;
             // create a "date" string to store start date and end date
             String date = startDate + " - " + endDate;
@@ -26,25 +29,31 @@ public class Display {
 
             // for grouping
             } else {
-                // create a loop to adjust the space between 2 columns 
+                // create a loop to adjust the space between 2 columns
                 for (int j = 0; j < 35 - date.length(); j++) {
                     space += " ";
                 }
                 System.out.println(date + space + value);
-                }
-         
-        } 
+            }
+
+        }
     }
 
-    // ---------------------------------------------------------------- CHART DISPLAY -----------------
-    
-    public static int[] createData(Data date) {
+    // ---------------------------------------------------------------- CHART
+    // DISPLAY -----------------
 
-        // put all value per group in an array 
-        int[] passData = new int[date.DataGroups.length];
-        // loop through all group
-        for (int i = 0; i < passData.length; i++) {
-            passData[i] = date.DataGroups[i].value;
+    public static int[] createData(Data date) {
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        // loop through each group
+        for (int i = 0; i < date.DataGroups.length; i++) {
+            // add value to array
+            data.add(date.DataGroups[i].value);
+        }
+        // convert arrayList to array
+        int[] passData = new int[data.size()];
+        // loop through arrayList
+        for (int j = 0; j < data.size(); j++) {
+            passData[j] = data.get(j);
         }
         return passData;
     }
@@ -61,8 +70,7 @@ public class Display {
                 min = data[i];
             }
         }
-        // assign value to array
-        int[] max_min = {max, min};
+        int[] max_min = { max, min };
         return max_min;
     }
 
@@ -82,20 +90,20 @@ public class Display {
                 int chartHeight = 22; // reset after each value is plotted
                 // loop row
                 for (int row = 0; row < chart.length - 1; row++) {
-                    int dataPoint = (x_scale * chartHeight) + min;   // value different between each y-point
-                    if (dataPoint - data[i] <= 0) {  // match y-coordinate
+                    int dataPoint = (x_scale * chartHeight) + min; // value different between each y-point
+                    if (dataPoint - data[i] <= 0) { // match y-coordinate
                         // loop column
                         for (int col = 1; col < chart[row].length - 1; col++) {
-                            if (col - 1 == i * groupPoint) {  // match x-coordinate
+                            if (col - 1 == i * groupPoint) { // match x-coordinate
                                 chart[row][col] = "*";
                             }
                         }
-                        break; // loop next row if a point is splotted
-                    }   
-                    chartHeight -= 1;  // next line          
+                        break;
+                    }
+                    chartHeight -= 1; // next line
                 }
             }
-        } else { 
+        } else {
             System.out.println("\nData exceeded chart limit\n");
             System.exit(0);
         }
@@ -103,32 +111,36 @@ public class Display {
     }
 
     public static void displayChart(int[] data) {
-        
-        // ------------------------------------------------- Create empty chart -----------------
+
+        // ------------------------------------------------- Create empty chart
+        // -----------------
         String[][] chart = new String[24][80];
         // fill up the chart with space
         for (int row = 0; row < chart.length; row++) {
             for (int col = 0; col < chart[row].length; col++) {
                 chart[row][col] = " ";
-                chart[chart.length - 1][col] = "_";  // add horizontal border
+                chart[chart.length - 1][col] = "_"; // add horizontal border
             }
-            chart[row][0] = "|";   // add vertical border
+            chart[row][0] = "|"; // add vertical border
         }
-        
-        // --------------------------------------------------- Plot the chart --------------------
+
+        // --------------------------------------------------- Plot the chart
+        // --------------------
         addToChart(chart, data);
 
-        // --------------------------------------------------- Display chart ---------------------
+        // --------------------------------------------------- Display chart
+        // ---------------------
         System.out.println();
         for (int row = 0; row < chart.length; row++) {
             for (int col = 0; col < chart[row].length; col++) {
                 System.out.print(chart[row][col]);
             }
             System.out.println();
-        } 
+        }
     }
 
-    // ---------------------------------------------------------------- OVERVIEW DISPLAY --------------
+    // ---------------------------------------------------------------- OVERVIEW
+    // DISPLAY --------------
 
     public static void overviewDisplay(Data data) {
         // get variables

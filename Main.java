@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Main {
     static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) throws IOException, ParseException {
         boolean stop = false; // start the loop
 
@@ -25,7 +26,8 @@ public class Main {
             System.out.println("\n------------------------------------------------------");
 
             // DATA get date
-            System.out.println("\n1: Start date & end date \n2: Number of days from a date \n3: Number of weeks from a date");
+            System.out.println(
+                    "\n1: Start date & end date \n2: Number of days from a date \n3: Number of weeks from a date");
             System.out.print("\nPlease choose a time range method (1/2/3): ");
             int option = Integer.parseInt(input.nextLine());
             // get option
@@ -53,8 +55,9 @@ public class Main {
             // get option
             switch (groupingMethod) {
                 case 1:
-                    date.DataGroups = new Group[GroupingOption.getTotalDays(date).size()];
-                    GroupingMethods.groupingMethod_2(GroupingOption.getTotalDays(date), GroupingOption.getTotalDays(date).size(), 0, date.DataGroups);
+                    date.DataGroups = new Group[GetTotalDates.getTotalDays(date).size()];
+                    GroupingMethods.groupingMethod_2(GetTotalDates.getTotalDays(date),
+                            GetTotalDates.getTotalDays(date).size(), 0, date.DataGroups);
                     break;
                 case 2:
                     GroupingOption.groupByNumGroups(date);
@@ -90,18 +93,14 @@ public class Main {
             switch (type) {
                 // New Total
                 case 1:
-                    if (metric == 1 || metric == 2) {
+                    if (metric == 1 || metric == 2 || metric == 3) {
                         MetricOption.CasesNewTotal(date, metric, type);
-                    } else {
-                        MetricOption.VaccineNew(date, type);
                     }
                     break;
                 // Up To
                 case 2:
-                    if (metric == 1 || metric == 2) {
+                    if (metric == 1 || metric == 2 || metric == 3) {
                         MetricOption.CasesUpTo(date, metric, type);
-                    } else {
-                        MetricOption.VaccinatedUpTo(date, type);
                     }
                     break;
                 default:
@@ -139,7 +138,7 @@ public class Main {
             System.out.print("\nDo you want to continue (1/2): ");
             int answer = Integer.parseInt(input.nextLine());
 
-            // stop the loop 
+            // stop the loop
             if (answer == 2) {
                 System.out.println("\nHave a nice day!");
                 stop = true;

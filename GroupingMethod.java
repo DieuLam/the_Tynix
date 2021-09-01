@@ -7,58 +7,27 @@ class GroupingOption {
         // get number of groups from user
         System.out.print("\nHow many groups: ");
         int numGroup = Integer.parseInt(Main.input.nextLine());
-        data.DataGroups = new Group[numGroup];
-        GroupingMethods.groupingMethod_2(getTotalDays(data), numGroup, 0, data.DataGroups);
+        if (numGroup <= GetTotalDates.getTotalDays(data).size()) {
+            data.DataGroups = new Group[numGroup];
+            GroupingMethods.groupingMethod_2(GetTotalDates.getTotalDays(data), numGroup, 0, data.DataGroups);
+        } else {
+            System.out.println("\nThe number of groups exceeds the number of days");
+        }
     }
 
     public static void groupByNumDays(Data data) throws IOException, ParseException {
         // get number of days from user
         System.out.print("\nHow many days per group: ");
         int numDay = Integer.parseInt(Main.input.nextLine());
-        GroupingMethods.groupingMethod_1(getTotalDays(data), numDay, 0, data);
+        GroupingMethods.groupingMethod_1(GetTotalDates.getTotalDays(data), numDay, 0, data);
     }
 
     // add all selected dates to a list
-    public static ArrayList<String[]> getTotalDays(Data obj) throws IOException, ParseException {
-
-        ArrayList<String[]> dateList = new ArrayList<String[]>();
-        BufferedReader reader = new BufferedReader(new FileReader("data.csv"));
-        reader.readLine(); // skip 1st line
-        String line = reader.readLine();
-
-        while (line != null) {
-            String[] splitData = line.split(",");
-            // if start date is found on the data.csv
-            if (splitData[3].equals(obj.startDate) && obj.country.equals(splitData[2])) {
-                // loop to add all dates from start date to end date
-                while (true) {
-                    // add date to the list
-                    String[] dateData = new String[4];
-                    for (int i = 0; i < dateData.length; i++) {
-                        dateData[i] = splitData[i + 3];
-                    }
-                    dateList.add(dateData);
-                    line = reader.readLine();
-                    splitData = line.split(",");
-                    // if end date is found on the data.csv
-                    if (dateList.get(dateList.size()-1)[0].equals(obj.endDate)) {
-                        // stop the loop
-                        break;
-                    }
-                }
-                break;
-            } else {
-                line = reader.readLine();
-            }
-        }
-        reader.close();
-        return dateList;
-    }
-
 }
 
 class GroupingMethods {
-    public static void groupingMethod_1(ArrayList<String[]> list, int numDay, int idx, Data data) throws IOException, ParseException {
+    public static void groupingMethod_1(ArrayList<String[]> list, int numDay, int idx, Data data)
+            throws IOException, ParseException {
         int totalDays = list.size();
         int numGroup = totalDays / numDay;
         if (totalDays % numDay == 0) {

@@ -12,7 +12,8 @@ class Data {
     Group[] DataGroups;
 
     public String toString() {
-        return String.format("Country: %s \nStart date: %s \nEnd date: %s \nMethod: %s  \nGroups: \n%s", country, startDate, endDate, method, Arrays.toString(DataGroups));
+        return String.format("Country: %s \nStart date: %s \nEnd date: %s \nMethod: %s  \nGroups: \n%s", country,
+                startDate, endDate, method, Arrays.toString(DataGroups));
     }
 }
 
@@ -30,10 +31,10 @@ class Group {
     }
 }
 
-//---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
 
 class dateOption {
-    
+
     public static Data option_1(String country, Data date) throws IOException, ParseException {
 
         // get date
@@ -54,7 +55,7 @@ class dateOption {
         String startDate = Main.input.nextLine();
         System.out.printf("\nHow many days from %s: ", startDate);
         int days = Integer.parseInt(Main.input.nextLine());
-   
+
         // calculate end date;
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Calendar c = Calendar.getInstance();
