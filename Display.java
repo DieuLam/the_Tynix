@@ -6,39 +6,36 @@ public class Display {
     // DISPLAY -----------------
 
     public static void tabularDisplay(Data data) {
-        System.out.printf("\n%s %35s", "Range", "Value\n");
+        System.out.printf("%s", "------------------------------------------------");
+        System.out.printf("\n%s %20s %15s", "Range", "|", "Value\n");
+        System.out.printf("%s", "------------------------------------------------");
         System.out.println();
         // loop through each group
         for (int i = 0; i < data.DataGroups.length; i++) {
             String startDate = data.DataGroups[i].totalDays[0];
-
             String endDate = data.DataGroups[i].totalDays[data.DataGroups[i].totalDays.length - 1];
-
             int value = data.DataGroups[i].value;
+
             // create a "date" string to store start date and end date
             String date = startDate + " - " + endDate;
-
             String space = "";
 
             // for no grouping
             if (startDate == endDate) {
-                for (int j = 1; j < 36 - endDate.length(); j++) {
+                for (int j = 1; j < 24 - endDate.length(); j++) {
                     space += " ";
                 }
-                System.out.println(endDate + space + value);
-
-            // for grouping
+                System.out.println(String.format("%s %s %s %15s", endDate, space, "|", value));
+                // for grouping
             } else {
                 // create a loop to adjust the space between 2 columns
-                for (int j = 0; j < 35 - date.length(); j++) {
+                for (int j = 0; j <= 22 - date.length(); j++) {
                     space += " ";
                 }
-                System.out.println(date + space + value);
+                System.out.println(String.format("%s %s %s %15s", date, space, "|", value));
             }
-
         }
     }
-
     // ---------------------------------------------------------------- CHART
     // DISPLAY -----------------
 
@@ -143,19 +140,11 @@ public class Display {
     // DISPLAY --------------
 
     public static void overviewDisplay(Data data) {
-        // get variables
-        String country = data.country;
-        String method = data.method;
-        String startDate = data.DataGroups[0].totalDays[0];
-        String endDate = data.DataGroups[0].totalDays[data.DataGroups[0].totalDays.length - 1];
-
-        System.out.println();
-
         // summarize the data entered by user
         System.out.println("Overview:\n");
-        System.out.println("Country: " + country);
-        System.out.println("Start date: " + startDate);
-        System.out.println("End date: " + endDate);
-        System.out.println("Method: " + method);
+        System.out.println("Country: " + data.country);
+        System.out.println("Start date: " + data.startDate);
+        System.out.println("End date: " + data.endDate);
+        System.out.println("Method: " + data.method);
     }
 }

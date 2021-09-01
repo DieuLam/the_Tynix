@@ -127,7 +127,8 @@ public class Main {
                     System.exit(0);
             }
 
-            System.out.println("\n------------------------------------------------------");
+            //System.out.println("\n------------------------------------------------------");
+            System.out.println();
 
             Display.overviewDisplay(date); // Overview of user choices
 

@@ -3,17 +3,20 @@ import java.text.*;
 import java.util.*;
 
 class GetTotalDates {
-    public static ArrayList<String[]> getAllDates(Data Fvalue) throws IOException, ParseException {
+    public static ArrayList<String[]> getAllDates(Data data) throws IOException, ParseException {
         ArrayList<String[]> countrylist = new ArrayList<String[]>();
         BufferedReader reader = new BufferedReader(new FileReader("data.csv"));
         reader.readLine(); // skip 1st line
         String line = reader.readLine();
         while (line != null) {
             String[] splitData = line.split(",");
-            if (Fvalue.country.equals(splitData[2])) {
+            // find the selected country in the file
+            if (data.country.equals(splitData[2])) {
                 while (true) {
                     String[] countryData = new String[4];
+                    // add all dates of that country to the list
                     for (int i = 0; i < countryData.length; i++) {
+                        // if the value is null then assign "0" to it
                         if (splitData[i + 3].equals("")) {
                             countryData[i] = "0";
                         } else {
@@ -23,7 +26,8 @@ class GetTotalDates {
                     countrylist.add(countryData);
                     line = reader.readLine();
                     splitData = line.split(",");
-                    if (!Fvalue.country.equals(splitData[2])) {
+                    // check if the country is different
+                    if (!data.country.equals(splitData[2])) {
                         break;
                     }
                 }
