@@ -33,20 +33,21 @@ class MetricOption {
     // calculate Up to
     public static void CasesUpTo(Data cases, int metric, int type) throws IOException, ParseException {
         String checkValue;
-        ArrayList<String[]> caseNum = getVaccinatedValue(GetTotalDates.getTotalDays(cases), cases);
+        ArrayList<String[]> caseNum = getVaccinatedValue(GetTotalDates.getAllDates(cases), cases);
         cases.method = Method[type - 1];
+        int UptoValue = 0;
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
             while (true) {
                 int fvalue;
                 fvalue = Integer.parseInt(caseNum.get(0)[metric]);
                 // check the data and asign new value
-                if (cases.DataGroups[i].value == 0) {
-                    cases.DataGroups[i].value = fvalue;
+                if (UptoValue == 0) {
+                    UptoValue = fvalue;
                     checkValue = caseNum.get(0)[0];
                     caseNum.remove(0);
                 } else {
-                    cases.DataGroups[i].value += fvalue;
+                    UptoValue += fvalue;
                     checkValue = caseNum.get(0)[0];
                     caseNum.remove(0);
                 }
@@ -54,6 +55,7 @@ class MetricOption {
                     break;
                 }
             }
+            cases.DataGroups[i].value = UptoValue;
         }
     }
 
@@ -87,12 +89,13 @@ class MetricOption {
                 // get the vaccinated value of all dates in that country
                 int vaccine = Integer.parseInt(fdate.get(j)[3]);
                 // check if the vaccinated value of the first date in the list is larger than
-                // vaccinated value of all dates in that country (exclude the date before start date)
+                // vaccinated value of all dates in that country (exclude the date before start
+                // date)
                 if (Integer.parseInt(caseNum.get(1)[3]) > vaccine) {
                     // keep the current vaccinated value
                     caseNum.get(1)[3] = caseNum.get(1)[3];
                 } else {
-                    // assign the new vaccinated value to the first date 
+                    // assign the new vaccinated value to the first date
                     caseNum.get(1)[3] = Integer.toString(vaccine);
                 }
                 // check if we reach the first date of the list
