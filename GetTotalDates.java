@@ -14,7 +14,11 @@ class GetTotalDates {
                 while (true) {
                     String[] countryData = new String[4];
                     for (int i = 0; i < countryData.length; i++) {
-                        countryData[i] = splitData[i + 3];
+                        if (splitData[i + 3].equals("")) {
+                            countryData[i] = "0";
+                        } else {
+                            countryData[i] = splitData[i + 3];
+                        }
                     }
                     countrylist.add(countryData);
                     line = reader.readLine();
