@@ -90,9 +90,9 @@ class MetricOption {
     // new cases and death case Up to
     public static void CasesUpTo(Data cases, int metric, int type) throws IOException, ParseException {
         String checkValue;
-        ArrayList<String[]> casenum = GroupingOption.getTotalDays(cases);
         cases.method = Method[type - 1];
         for (int i = 0; i < cases.DataGroups.length; i++) {
+            ArrayList<String[]> casenum = readfile.GetFirstValue(cases);
             cases.DataGroups[i].metric = Metric[metric - 1];
             while (true) {
                 int fvalue;
