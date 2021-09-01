@@ -62,7 +62,12 @@ class MetricOption {
     public static ArrayList<String[]> getVaccinatedValue(ArrayList<String[]> dateList, Data Vcases)
             throws IOException, ParseException {
         ArrayList<String[]> fdate = GetTotalDates.getAllDates(Vcases);
-        ArrayList<String[]> caseNum = GetTotalDates.getTotalDays(Vcases);
+        ArrayList<String[]> caseNum = new ArrayList<String[]>();
+        
+        for (String[] d : dateList) {
+            caseNum.add(d.clone());
+        }
+                
         String[] day = new String[4];
 
         // loop to find the date before the start date
