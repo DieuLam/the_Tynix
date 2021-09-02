@@ -9,52 +9,65 @@ class MetricOption {
 
     // new total
     public static void CasesNewTotal(Data cases, int metric, int type) throws IOException, ParseException {
+        // get all days from strat to end
         ArrayList<String[]> caseNum = getVaccinatedValue(GetTotalDates.getTotalDays(cases), cases);
+        // assign a metric method to object
         cases.method = Method[type - 1];
+
         // loop number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
             // loop the data in group
             for (int j = 0; j < cases.DataGroups[i].totalDays.length; j++) {
+                // get the metric value depend on user option
                 int new_total = Integer.parseInt(caseNum.get(0)[metric]);
-                // check the data and asign new value
+
+                // no value yet -> assign value
                 if (cases.DataGroups[i].value == 0) {
                     cases.DataGroups[i].value = new_total;
-                    caseNum.remove(0);
-
+                // already has value -> add up
                 } else {
                     cases.DataGroups[i].value += new_total;
-                    caseNum.remove(0);
                 }
+                caseNum.remove(0);
             }
         }
     }
 
-    // calculate Up to
+    // Up to
     public static void CasesUpTo(Data cases, int metric, int type) throws IOException, ParseException {
+
         String checkValue;
+        // get all dates from start to end
         ArrayList<String[]> caseNum = getVaccinatedValue(GetTotalDates.getAllDates(cases), cases);
+        // assign a metric method to object
         cases.method = Method[type - 1];
         int UptoValue = 0;
+
+        // loop through each group
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
+
             while (true) {
                 int fvalue;
                 fvalue = Integer.parseInt(caseNum.get(0)[metric]);
-                // check the data and asign new value
+                // no value -> assign new value
                 if (UptoValue == 0) {
                     UptoValue = fvalue;
-                    checkValue = caseNum.get(0)[0];
-                    caseNum.remove(0);
+                // already has value -> add up
                 } else {
                     UptoValue += fvalue;
-                    checkValue = caseNum.get(0)[0];
-                    caseNum.remove(0);
                 }
+                // get current date
+                checkValue = caseNum.get(0)[0];
+                caseNum.remove(0);
+
+                // check if the end date is founded
                 if (checkValue.equals(cases.DataGroups[i].totalDays[cases.DataGroups[i].totalDays.length - 1])) {
                     break;
                 }
             }
+            // assign value to object
             cases.DataGroups[i].value = UptoValue;
         }
     }

@@ -70,6 +70,7 @@ class dateOption {
     }
 
     public static Data option_3(String country, Data date) throws IOException, ParseException {
+
         // get date
         System.out.print("\nStart date (MM/dd/yyyy): ");
         String startDate = Main.input.nextLine();
@@ -91,9 +92,10 @@ class dateOption {
     }
 
     public static Data assignDate(Data date, String country, String startDate, String endDate) throws IOException {
+
         // valid date and country in the file
         if (errorHandler.checkDate(country, startDate, endDate) == true) {
-            // assign to object
+            // convert to String & assign to object
             date.startDate = errorHandler.convertDate(startDate);
             date.endDate = errorHandler.convertDate(endDate);
         } else {
