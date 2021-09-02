@@ -11,10 +11,10 @@ class MetricOption {
     public static void CasesNewTotal(Data cases, int metric, int type) throws IOException, ParseException {
         ArrayList<String[]> caseNum = getVaccinatedValue(GetTotalDates.getTotalDays(cases), cases);
         cases.method = Method[type - 1];
-        // loop number of groups
+        //loop through number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
-            // loop the data in group
+            // loop through the data in group
             for (int j = 0; j < cases.DataGroups[i].totalDays.length; j++) {
                 int new_total = Integer.parseInt(caseNum.get(0)[metric]);
                 // check the data and asign new value
@@ -35,26 +35,29 @@ class MetricOption {
         String checkValue;
         ArrayList<String[]> caseNum = getVaccinatedValue(GetTotalDates.getAllDates(cases), cases);
         cases.method = Method[type - 1];
-        //loop number of groups
+        int UptoValue = 0;
+        //loop through number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
             while (true) {
                 int fvalue;
                 fvalue = Integer.parseInt(caseNum.get(0)[metric]);
                 // check the data and asign new value
-                if (cases.DataGroups[i].value == 0) {
-                    cases.DataGroups[i].value = fvalue;
+                if (UptoValue == 0) {
+                    UptoValue = fvalue;
                     checkValue = caseNum.get(0)[0];
                     caseNum.remove(0);
                 } else {
-                    cases.DataGroups[i].value += fvalue;
+                    UptoValue += fvalue;
                     checkValue = caseNum.get(0)[0];
                     caseNum.remove(0);
                 }
+                //check the last date of group to break if it match the last date in file
                 if (checkValue.equals(cases.DataGroups[i].totalDays[cases.DataGroups[i].totalDays.length - 1])) {
                     break;
                 }
             }
+            cases.DataGroups[i].value = UptoValue;
         }
     }
 
