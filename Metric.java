@@ -14,10 +14,10 @@ class MetricOption {
         // assign a metric method to object
         cases.method = Method[type - 1];
 
-        // loop number of groups
+        //loop through number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
-            // loop the data in group
+            // loop through the data in group
             for (int j = 0; j < cases.DataGroups[i].totalDays.length; j++) {
                 // get the metric value depend on user option
                 int new_total = Integer.parseInt(caseNum.get(0)[metric]);
@@ -44,7 +44,7 @@ class MetricOption {
         cases.method = Method[type - 1];
         int UptoValue = 0;
 
-        // loop through each group
+        //loop through number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
 
