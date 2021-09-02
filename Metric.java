@@ -35,19 +35,19 @@ class MetricOption {
         String checkValue;
         ArrayList<String[]> caseNum = getVaccinatedValue(GetTotalDates.getAllDates(cases), cases);
         cases.method = Method[type - 1];
-        int UptoValue = 0;
+        //loop number of groups
         for (int i = 0; i < cases.DataGroups.length; i++) {
             cases.DataGroups[i].metric = Metric[metric - 1];
             while (true) {
                 int fvalue;
                 fvalue = Integer.parseInt(caseNum.get(0)[metric]);
                 // check the data and asign new value
-                if (UptoValue == 0) {
-                    UptoValue = fvalue;
+                if (cases.DataGroups[i].value == 0) {
+                    cases.DataGroups[i].value = fvalue;
                     checkValue = caseNum.get(0)[0];
                     caseNum.remove(0);
                 } else {
-                    UptoValue += fvalue;
+                    cases.DataGroups[i].value += fvalue;
                     checkValue = caseNum.get(0)[0];
                     caseNum.remove(0);
                 }
@@ -55,7 +55,6 @@ class MetricOption {
                     break;
                 }
             }
-            cases.DataGroups[i].value = UptoValue;
         }
     }
 
