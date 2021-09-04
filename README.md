@@ -10,5 +10,5 @@ We have been working closely together for the past few weeks to complete our fin
 The best thing is that, everyone constributed equally and amazingly through out the project.
 It has been such a pleasure working with these wonderful members.
 
-Github Repo link: https://github.com/DieuLam/the_Tynix
-Video link: 
+Github Repo   :   https://github.com/DieuLam/the_Tynix
+Youtube video :   https://youtu.be/OLw9f1RjR5I
